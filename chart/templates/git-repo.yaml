@@ -1,0 +1,15 @@
+apiVersion: github.krateo.io/v1alpha1
+kind: Repo
+metadata:
+  name: {{ include "fireworks-app.fullname" . }}-repo
+  labels:
+    {{- include "fireworks-app.labels" . | nindent 4 }}
+spec:
+  providerConfigRef:
+    name: {{ include "fireworks-app.fullname" . }}-repo-providerconfig
+  forProvider:
+    org: {{ .Values.git.toRepo.org }}
+    name: {{ .Values.git.toRepo.name }}
+    initialize: true
+    fromRepo:
+      path: skeleton/app

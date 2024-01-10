@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fireworks-app.fullname" . }}-replace-values
+  labels:
+    {{- include "fireworks-app.labels" . | nindent 4 }}
+data:
+  values: |
+    {
+{{- range $k, $v := .Values.git.replaceValues }}
+{{- if kindIs "string" $v }}
+  {{ $k | indent 6}}: {{ quote $v }}
+{{- else }}
+  {{ $k | indent 6}}: {{ $v }}
+{{- end }}
+{{- end }}
+    }

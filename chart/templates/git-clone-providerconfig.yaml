@@ -1,0 +1,22 @@
+apiVersion: git.krateo.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: {{ include "fireworks-app.fullname" . }}-clone-providerconfig
+  labels:
+    {{- include "fireworks-app.labels" . | nindent 4 }}
+spec:
+  deploymentServiceUrl: {{ .Values.git.deploymentServiceUrl | default "http://deployment-service.krateo-system.svc" }}
+  fromRepoCredentials:
+    authMethod: {{ .Values.git.fromRepo.credentials.authMethod }}
+    source: {{ .Values.git.fromRepo.credentials.source }}
+    secretRef:
+      namespace: {{ .Values.git.fromRepo.credentials.secretRef.namespace }}
+      name: {{ .Values.git.fromRepo.credentials.secretRef.name }}
+      key: {{ .Values.git.fromRepo.credentials.secretRef.key }}
+  toRepoCredentials:
+    authMethod: {{ .Values.git.toRepo.credentials.authMethod }}
+    source: {{ .Values.git.toRepo.credentials.source }}
+    secretRef:
+      namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
+      name: {{ .Values.git.toRepo.credentials.secretRef.name }}
+      key: {{ .Values.git.toRepo.credentials.secretRef.key }}
