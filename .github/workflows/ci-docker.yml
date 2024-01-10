@@ -3,7 +3,7 @@ name: ci-docker
 on:
   push:
     branches:
-      - "main"
+      - "**"
 
 jobs:
   docker:
@@ -28,7 +28,7 @@ jobs:
         with:
           context: "{{defaultContext}}:app"
           platforms: linux/amd64,linux/arm64
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' && true || false }}
           tags: |
             ghcr.io/krateoplatformops/fireworksapp:${{ env.SHA8 }}
             ghcr.io/krateoplatformops/fireworksapp:latest
