@@ -19,9 +19,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GH_TOKEN }}
+      - name: Get short SHA
+        id: slug
+        # run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> "$GITHUB_ENV"
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:app"
           push: true
-          tags: ghcr.io/krateoplatformops/fireworksapp:latest
+          tags: |
+            ghcr.io/krateoplatformops/fireworksapp:${{ env.SHA8 }}
+            ghcr.io/krateoplatformops/fireworksapp:latest
