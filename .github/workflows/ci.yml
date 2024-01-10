@@ -37,7 +37,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v5.1.0
         with:
-          context: ./app
           file: ./app/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
