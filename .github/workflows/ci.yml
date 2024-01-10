@@ -35,8 +35,9 @@ jobs:
         run: echo "SHA8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> "$GITHUB_ENV"
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5.1.0
         with:
+          context: ./app
           file: ./app/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
