@@ -1,47 +1,29 @@
-name: Build Docker image for every commit
+name: ci
 
 on:
-  push:
-    branches: "**"
-
-env:
-  IMAGE_TAG: "latest"
+    push:
+    branches:
+        - 'main'
 
 jobs:
-  push:
-    name: Create docker image
+    docker:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
     steps:
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@master
-      - name: Cache Docker layers
-        uses: actions/cache@v2
+        -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+            username: ${{ github.actor }}
+            password: ${{ secrets.GH_TOKEN }}
+        -
+        name: Build and push
+        uses: docker/build-push-action@v5
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_TOKEN }}
-      - name: Get short SHA
-        id: slug
-        run: echo "SHA8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> "$GITHUB_ENV"
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v5.1.0
-        with:
-          file: ./app/Dockerfile
-          builder: ${{ steps.buildx.outputs.name }}
-          push: true
-          tags: "ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:${{ env.IMAGE_TAG }}"
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+            push: true
+            tags: ghcr.io/krateoplatformops/fireworksapp:latest
