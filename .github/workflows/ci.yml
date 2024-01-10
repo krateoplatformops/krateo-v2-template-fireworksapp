@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.GH_TOKEN }}
       - name: Get short SHA
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+        run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> "$GITHUB_ENV"
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -40,7 +40,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: "ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:${{ env.IMAGE_TAG}},ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:${{ steps.slug.sha8}}"
+          tags: "ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:${{ env.IMAGE_TAG}},ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:$sha8"
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
