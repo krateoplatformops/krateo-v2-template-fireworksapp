@@ -23,6 +23,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:app"
-          file: ./app/Dockerfile
           push: true
           tags: ghcr.io/krateoplatformops/fireworksapp:latest
