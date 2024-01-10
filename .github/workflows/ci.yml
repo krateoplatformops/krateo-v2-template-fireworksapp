@@ -40,7 +40,7 @@ jobs:
           file: ./app/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: "ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:${{ env.IMAGE_TAG }},ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:${{ github.sha }}"
+          tags: "ghcr.io/${{ github.event.repository.owner.name }}/${{ github.event.repository.name }}:${{ env.IMAGE_TAG }}"
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
