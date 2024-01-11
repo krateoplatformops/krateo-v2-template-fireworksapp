@@ -30,5 +30,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' && true || false }}
           tags: |
-            ghcr.io/krateoplatformops/fireworksapp:${{ env.SHA8 }}
-            ghcr.io/krateoplatformops/fireworksapp:latest
+            ghcr.io/${{ github.repository }}:${{ env.SHA8 }}
+            ghcr.io/${{ github.repository }}:latest

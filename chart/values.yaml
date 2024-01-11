@@ -16,30 +16,35 @@ argocd:
 
 git:
   deploymentServiceUrl: http://deployment-service.krateo-system.svc
+  unsupportedCapabilities: true
   deletionPolicy: Orphan
+  insecure: true
   fromRepo:
     url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp
+    branch: 3-implement-the-chart
     path: skeleton/app
     credentials:
       authMethod: basic
-      source: Secret
       secretRef:
         namespace: krateo-system
-        name: from-repo-creds
+        name: github-repo-creds
         key: token
   toRepo:
     scmUrl: https://github.com
     org: krateoplatformops
     name: fireworksapp-test-v2
+    branch: main
     path: /
     credentials:
       authMethod: basic
-      source: Secret
       secretRef:
         namespace: krateo-system
-        name: to-repo-creds
+        name: github-repo-creds
         key: token
     apiUrl: https://api.github.com
+    private: true
+    initialize: true
+    deletionPolicy: Delete
   replaceValues:
     host: localhost
     organizationName: myorganization

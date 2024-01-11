@@ -5,17 +5,28 @@ metadata:
   labels:
     {{- include "fireworks-app.labels" . | nindent 4 }}
 spec:
-  providerConfigRef:
-    name: {{ include "fireworks-app.fullname" . }}-repo-providerconfig
+  unsupportedCapabilities: {{ .Values.git.unsupportedCapabilities }}
+  insecure: {{ .Values.git.insecure }}
   deletionPolicy: {{ .Values.git.deletionPolicy }}
-  forProvider:
-    fromRepo:
-      url: {{ .Values.git.fromRepo.url }}
-      path: {{ .Values.git.fromRepo.path }}
-    toRepo:
-      url: {{ include "fireworks-app.toRepoUrl" . }}
-      path: {{ .Values.git.toRepo.path }}
-    configMapKeyRef:
-      namespace: {{ .Release.Namespace }}
-      name: {{ include "fireworks-app.fullname" . }}-replace-values
-      key: values
+  configMapKeyRef:
+    namespace: {{ .Release.Namespace }}
+    name: {{ include "fireworks-app.fullname" . }}-replace-values
+    key: values
+  fromRepo:
+    url: {{ .Values.git.fromRepo.url }}
+    branch: {{ .Values.git.fromRepo.branch }}
+    authMethod: {{ .Values.git.fromRepo.credentials.authMethod }}
+    path: {{ .Values.git.fromRepo.path }}
+    secretRef:
+      namespace: {{ .Values.git.fromRepo.credentials.secretRef.namespace }}
+      name: {{ .Values.git.fromRepo.credentials.secretRef.name }}
+      key: {{ .Values.git.fromRepo.credentials.secretRef.key }}
+  toRepo:
+    url: {{ include "fireworks-app.toRepoUrl" . }}
+    branch: {{ .Values.git.toRepo.branch }}
+    authMethod: {{ .Values.git.toRepo.credentials.authMethod }}
+    path: {{ .Values.git.toRepo.path }}
+    secretRef:
+      namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
+      name: {{ .Values.git.toRepo.credentials.secretRef.name }}
+      key: {{ .Values.git.toRepo.credentials.secretRef.key }}

@@ -6,12 +6,15 @@ metadata:
     {{- include "fireworks-app.labels" . | nindent 4 }}
 data:
   values: |
-    {
-{{- range $k, $v := .Values.git.replaceValues }}
+    { 
+{{- $local := dict "first" true -}}
+{{- range $k, $v := .Values.git.replaceValues -}}
+{{- if not $local.first -}},{{- end -}}
 {{- if kindIs "string" $v }}
-  {{ $k | indent 6}}: {{ quote $v }}
+  {{ quote $k | indent 6}}: {{ quote $v }}
 {{- else }}
-  {{ $k | indent 6}}: {{ $v }}
+  {{ quote $k | indent 6}}: {{ $v }}
 {{- end }}
-{{- end }}
+{{- $_ := set $local "first" false -}}
+{{- end -}}
     }
