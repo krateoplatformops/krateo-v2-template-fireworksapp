@@ -1,8 +1,6 @@
 argocd:
   project: default
   source:
-    repoURL: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp
-    targetRevision: HEAD
     path: chart
   destination:
     server: https://kubernetes.default.svc
@@ -22,7 +20,7 @@ git:
   fromRepo:
     url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp
     branch: 3-implement-the-chart
-    path: skeleton/app
+    path: skeleton
     credentials:
       authMethod: basic
       secretRef:
@@ -42,7 +40,7 @@ git:
         name: github-repo-creds
         key: token
     apiUrl: https://api.github.com
-    private: true
+    private: false
     initialize: true
     deletionPolicy: Delete
   replaceValues:

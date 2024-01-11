@@ -7,8 +7,8 @@ metadata:
 spec:
   project: {{ .Values.argocd.project | default "default" }}
   source:
-    repoURL: {{ .Values.argocd.source.repoURL }}
-    targetRevision: {{ .Values.argocd.source.targetRevision }}
+    repoURL: {{ include "fireworks-app.toRepoUrl" . }}
+    targetRevision: {{ .Values.git.toRepo.branch }}
     path: {{ .Values.argocd.source.path }}
   destination:
     server: {{ .Values.argocd.destination.server }}
