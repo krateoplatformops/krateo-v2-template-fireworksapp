@@ -1,2 +1,31 @@
+=========================================================
+           IMPORTANT NOTE: SETTING UP CI/CD
+=========================================================
 
-# TOP
+To ensure the correct execution of the CI/CD pipeline for both the Dockerfile and Helm chart, follow these steps:
+
+1. **Generate GitHub Token:**
+   - Create a GitHub Personal Access Token with the necessary permissions.
+   - Make sure the token has access to the repositories involved in the CI/CD process.
+
+2. **Create a Secret in Your Repository:**
+   - Go to your GitHub repository where you have the Helm chart and Dockerfile.
+   - Navigate to Settings > Secrets > New repository secret: {{ .Values.git.toRepo.scmUrl }}/{{ .Values.git.toRepo.org }}/{{ .Values.git.toRepo.name }}/settings/secrets/new
+   - Name the secret as `GH_TOKEN` and paste the generated GitHub token as the value.
+
+3. **Update CI/CD Configurations:**
+   - Check your CI/CD configurations of GitHub Actions (https://docs.github.com/en/actions) to ensure they use the `GH_TOKEN` secret for authentication.
+
+4. **Helm Chart Values:**
+   - If your Helm chart requires authentication, update the values.yaml or the appropriate configuration file to use the `GH_TOKEN` secret.
+
+5. **Review Documentation:**
+   - Refer to the documentation of your CI/CD system and Helm chart for any additional configuration steps.
+
+6. **Ensure Secret is Kept Confidential:**
+   - Be cautious not to expose the GitHub token or any sensitive information. Keep the secret confidential and use appropriate security measures.
+
+With these steps, you should have a properly configured CI/CD pipeline that uses the `GH_TOKEN` secret for authentication. If you encounter any issues, refer to the documentation or seek assistance from your CI/CD and Helm chart providers.
+
+Happy Deploying!
+=========================================================
