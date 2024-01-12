@@ -1,12 +1,22 @@
+# @param {object} argocd ArgoCD parameters section
 argocd:
+  # @param {string} namespace Namespace where ArgoCD has been installed
   namespace: argocd
+  # @param {object} application ArgoCD application configuration section
   application:
+    # @param {string} project ArgoCD Application project
     project: default
+    # @param {object} source ArgoCD Application source parameters section
     source:
+      # @param {string} path ArgoCD Application source path inside the repository created by the template
       path: chart/
+    # @param {object} project ArgoCD Application destination parameters section
     destination:
+      # @param {string} server ArgoCD Application target cluster
       server: https://kubernetes.default.svc
+      # @param {string} namespace ArgoCD Application target namespace
       namespace: fireworks-app
+    # @param {object} syncPolicy ArgoCD Application synchronization policies section
     syncPolicy:
       automated:
         prune: true
