@@ -1,16 +1,18 @@
 argocd:
-  project: default
-  source:
-    path: chart/
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: krateo-system
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+  namespace: argocd
+  application:
+    project: default
+    source:
+      path: chart/
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: fireworks-app
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
 
 git:
   deploymentServiceUrl: http://deployment-service.krateo-system.svc

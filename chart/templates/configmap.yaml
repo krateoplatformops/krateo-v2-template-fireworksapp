@@ -11,9 +11,9 @@ data:
 {{- range $k, $v := .Values.git.replaceValues -}}
 {{- if not $local.first -}},{{- end -}}
 {{- if kindIs "string" $v }}
-  {{ quote $k | indent 6}}: {{ quote $v }}
+  {{ quote $k | indent 6 }}: {{ quote $v }}
 {{- else }}
-  {{ quote $k | indent 6}}: {{ $v }}
+  {{ quote $k | indent 6 }}: {{ $v }}
 {{- end }}
 {{- $_ := set $local "first" false -}}
 {{- end -}}
