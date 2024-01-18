@@ -1,0 +1,32 @@
+apiVersion: git.krateo.io/v1alpha1
+kind: Repo
+metadata:
+  name: {{ include "fireworks-app.fullname" . }}-repo
+  labels:
+    {{- include "fireworks-app.labels" . | nindent 4 }}
+spec:
+  unsupportedCapabilities: {{ .Values.git.unsupportedCapabilities }}
+  insecure: {{ .Values.git.insecure }}
+  deletionPolicy: {{ .Values.git.deletionPolicy }}
+  configMapKeyRef:
+    namespace: {{ .Release.Namespace }}
+    name: {{ include "fireworks-app.fullname" . }}-replace-values
+    key: values
+  fromRepo:
+    url: {{ include "fireworks-app.fromRepoUrl" . }}
+    branch: {{ .Values.git.fromRepo.branch }}
+    authMethod: {{ .Values.git.fromRepo.credentials.authMethod }}
+    path: {{ .Values.git.fromRepo.path }}
+    secretRef:
+      namespace: {{ .Values.git.fromRepo.credentials.secretRef.namespace }}
+      name: {{ .Values.git.fromRepo.credentials.secretRef.name }}
+      key: {{ .Values.git.fromRepo.credentials.secretRef.key }}
+  toRepo:
+    url: {{ include "fireworks-app.toRepoUrl" . }}
+    branch: {{ .Values.git.toRepo.branch }}
+    authMethod: {{ .Values.git.toRepo.credentials.authMethod }}
+    path: {{ .Values.git.toRepo.path }}
+    secretRef:
+      namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
+      name: {{ .Values.git.toRepo.credentials.secretRef.name }}
+      key: {{ .Values.git.toRepo.credentials.secretRef.key }}

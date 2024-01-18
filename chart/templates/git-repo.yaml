@@ -1,0 +1,19 @@
+apiVersion: github.krateo.io/v1alpha1
+kind: Repo
+metadata:
+  name: {{ include "fireworks-app.fullname" . }}-repo
+  labels:
+    {{- include "fireworks-app.labels" . | nindent 4 }}
+spec:
+  apiUrl: {{ .Values.git.toRepo.apiUrl }}
+  verbose: {{ .Values.git.toRepo.verbose }}
+  credentials:
+    secretRef:
+      namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
+      name: {{ .Values.git.toRepo.credentials.secretRef.name }}
+      key: {{ .Values.git.toRepo.credentials.secretRef.key }}
+  org: {{ .Values.git.toRepo.org }}
+  name: {{ .Values.git.toRepo.name }}
+  deletionPolicy: {{ .Values.git.toRepo.deletionPolicy | default "Delete" }}
+  private: {{ .Values.git.toRepo.private }}
+  initialize: {{ .Values.git.toRepo.initialize }}

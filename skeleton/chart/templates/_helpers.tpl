@@ -60,17 +60,3 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
-
-{{/*
-Compose toRepo URL
-*/}}
-{{- define "fireworks-app.toRepoUrl" -}}
-{{- printf "%s/%s/%s" .Values.git.toRepo.scmUrl .Values.git.toRepo.org .Values.git.toRepo.name }}
-{{- end }}
-
-{{/*
-Compose fromRepo URL
-*/}}
-{{- define "fireworks-app.fromRepoUrl" -}}
-{{- printf "%s/%s/%s" .Values.git.fromRepo.scmUrl .Values.git.fromRepo.org .Values.git.fromRepo.name }}
-{{- end }}

@@ -1,22 +1,32 @@
-1. Get the application URL by running these commands:
-{{- if .Values.ingress.enabled }}
-{{- range $host := .Values.ingress.hosts }}
-  {{- range .paths }}
-  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
-  {{- end }}
-{{- end }}
-{{- else if contains "NodePort" .Values.service.type }}
-  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "fireworks-app.fullname" . }})
-  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
-  echo http://$NODE_IP:$NODE_PORT
-{{- else if contains "LoadBalancer" .Values.service.type }}
-     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
-           You can watch the status of by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "fireworks-app.fullname" . }}'
-  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "fireworks-app.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
-  echo http://$SERVICE_IP:{{ .Values.service.port }}
-{{- else if contains "ClusterIP" .Values.service.type }}
-  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "fireworks-app.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
-  export CONTAINER_PORT=$(kubectl get pod --namespace {{ .Release.Namespace }} $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
-  echo "Visit http://127.0.0.1:8080 to use your application"
-  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
-{{- end }}
+=========================================================
+           IMPORTANT NOTE: SETTING UP CI/CD
+=========================================================
+
+To ensure the correct execution of the CI/CD pipeline for both the Dockerfile and Helm chart, follow these steps:
+
+1. **Generate GitHub Token:**
+   - Create a GitHub Personal Access Token with the necessary permissions.
+   - Make sure the token has access to the repositories involved in the CI/CD process.
+
+2. **Create a Secret in Your Repository:**
+   - Go to your GitHub repository where you have the Helm chart and Dockerfile.
+   - Navigate to Settings > Secrets > New repository secret: {{ .Values.git.toRepo.scmUrl }}/{{ .Values.git.toRepo.org }}/{{ .Values.git.toRepo.name }}/settings/secrets/new
+   - Name the secret as `GH_TOKEN` and paste the generated GitHub token as the value.
+
+3. **Update CI/CD Configurations:**
+   - Check your CI/CD configurations of GitHub Actions (https://docs.github.com/en/actions) to ensure they use the `GH_TOKEN` secret for authentication.
+
+4. **Helm Chart Values:**
+   - If your Helm chart requires authentication, update the values.yaml or the appropriate configuration file to use the `GH_TOKEN` secret.
+
+5. **Review Documentation:**
+   - Refer to the documentation of your CI/CD system and Helm chart for any additional configuration steps.
+
+6. **Ensure Secret is Kept Confidential:**
+   - Be cautious not to expose the GitHub token or any sensitive information. Keep the secret confidential and use appropriate security measures.
+
+7. **Manage action access of the package**: Add to the repository {{ .Values.git.toRepo.scmUrl }}/{{ .Values.git.toRepo.org }}/{{ .Values.git.toRepo.name }} the WRITE access permission to the package
+
+With these steps, you should have a properly configured CI/CD pipeline that uses the `GH_TOKEN` secret for authentication. If you encounter any issues, refer to the documentation or seek assistance from your CI/CD and Helm chart providers.
+
+=========================================================

@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ include "fireworks-app.fullname" . }}
+  namespace: {{ .Values.argocd.namespace | default "argocd" }}
+  labels:
+    {{- include "fireworks-app.labels" . | nindent 4 }}
+spec:
+  project: {{ .Values.argocd.application.project | default "default" }}
+  source:
+    repoURL: {{ include "fireworks-app.toRepoUrl" . }}
+    targetRevision: {{ .Values.git.toRepo.branch }}
+    path: {{ .Values.argocd.application.source.path }}
+  destination:
+    server: {{ .Values.argocd.application.destination.server }}
+    namespace: {{ .Values.argocd.application.destination.namespace }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.argocd.application.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.argocd.application.syncPolicy.automated.selfHeal }}
+    syncOptions: 
+    {{- range .Values.argocd.application.syncPolicy.syncOptions }}
+      - {{ . }}
+    {{- end }}

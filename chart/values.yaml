@@ -1,82 +1,65 @@
-# Default values for fireworks-app.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# @param {object} argocd ArgoCD parameters section
+argocd:
+  # @param {string} namespace Namespace where ArgoCD has been installed
+  namespace: argocd
+  # @param {object} application ArgoCD application configuration section
+  application:
+    # @param {string} project ArgoCD Application project
+    project: default
+    # @param {object} source ArgoCD Application source parameters section
+    source:
+      # @param {string} path ArgoCD Application source path inside the repository created by the template
+      path: chart/
+    # @param {object} project ArgoCD Application destination parameters section
+    destination:
+      # @param {string} server ArgoCD Application target cluster
+      server: https://kubernetes.default.svc
+      # @param {string} namespace ArgoCD Application target namespace
+      namespace: fireworks-app
+    # @param {object} syncPolicy ArgoCD Application synchronization policies section
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
 
-replicaCount: 1
-
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
-
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-service:
-  type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+git:
+  deploymentServiceUrl: http://deployment-service.krateo-system.svc
+  unsupportedCapabilities: true
+  deletionPolicy: Orphan
+  insecure: true
+  fromRepo:
+    scmUrl: https://github.com
+    org: krateoplatformops
+    name: krateo-v2-template-fireworksapp
+    branch: 3-implement-the-chart
+    path: skeleton/
+    credentials:
+      authMethod: basic
+      secretRef:
+        namespace: krateo-system
+        name: github-repo-creds
+        key: token
+  toRepo:
+    scmUrl: https://github.com
+    org: krateoplatformops
+    name: fireworksapp-test-v2
+    branch: main
+    path: /
+    credentials:
+      authMethod: basic
+      secretRef:
+        namespace: krateo-system
+        name: github-repo-creds
+        key: token
+    apiUrl: https://api.github.com
+    private: false
+    initialize: true
+    deletionPolicy: Delete
+  replaceValues:
+    host: localhost
+    organizationName: myorganization
+    schema: myschema
+    pippo: true
+    pluto: 123123
