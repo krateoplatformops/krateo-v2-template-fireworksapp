@@ -18,45 +18,83 @@ argocd:
       namespace: fireworks-app
     # @param {object} syncPolicy ArgoCD Application synchronization policies section
     syncPolicy:
+      # @param {object} automated ArgoCD Application automated synchronization policies section
       automated:
+        # @param {boolean} prune Prune specifies to delete resources from the cluster that are no longer tracked in git
         prune: true
+        # @param {boolean} selfHeal SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster
         selfHeal: true
+      # @param {string[]} syncOptions Options allow you to specify whole app sync-options
       syncOptions:
         - CreateNamespace=true
 
+# @param {object} git Git Repository parameters section
 git:
+  # @param {string} deploymentServiceUrl URL of Krateo deployment-service 
   deploymentServiceUrl: http://deployment-service.krateo-system.svc
+  # @param {boolean} unsupportedCapabilities UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.
   unsupportedCapabilities: true
+  # @param {string} DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
   deletionPolicy: Orphan
+  # @param {boolean} insecure Insecure is useful with hand made SSL certs
   insecure: true
+  # @param {object} fromRepo Parameters section for Git repository used as template for the application skeleton
   fromRepo:
+    # @param{string} scmUrl (schema+host e.g. https://github.com) for the target Git repository
     scmUrl: https://github.com
+    # @param{string} org Organization/group/subgroup for the target Git repository
     org: krateoplatformops
+    # @param{string} name Name for the target Git repository
     name: krateo-v2-template-fireworksapp
+    # @param{string} branch Branch of Git repository used as template for the application skeleton
     branch: 3-implement-the-chart
+    # @param{string} path Path of Git repository used as template for the application skeleton
     path: skeleton/
+    # @param{object} credentials References to the secrets that contain the credentials required to clone the repository (in case of private ones)
     credentials:
-      authMethod: basic
+      # @param{string} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
+      authMethod: basicY
+      # @param{object} secretRef Reference details about the secret where the credentials are stored
       secretRef:
+        # @param{string} namespace Namespace of the secret where the credentials are stored 
         namespace: krateo-system
+        # @param{string} name Name of the secret where the credentials are stored 
         name: github-repo-creds
+        # @param{string} key Key of the secret to use
         key: token
+  # @param{object} toRepo Parameters section for Git repository that will be created by Krateo
   toRepo:
+    # @param{string} scmUrl (schema+host e.g. https://github.com) for the target Git repository
     scmUrl: https://github.com
+    # @param{string} org Organization/group/subgroup for the target Git repository
     org: krateoplatformops
+    # @param{string} name Name for the target Git repository
     name: fireworksapp-test-v2
+    # @param{string} branch Branch for the target Git repository
     branch: main
+    # @param{string} path Path where the template will be placed
     path: /
+    # @param{object} credentials References to the secrets that contain the credentials required to push the content the repository (in case of private ones)
     credentials:
+      # @param{string} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
       authMethod: basic
+      # @param{object} secretRef Reference details about the secret where the credentials are stored
       secretRef:
+        # @param{string} namespace Namespace of the secret where the credentials are stored 
         namespace: krateo-system
+        # @param{string} name Name of the secret where the credentials are stored 
         name: github-repo-creds
+        # @param{string} key Key of the secret to use
         key: token
+    # @param{string} apiUrl URL to use for API
     apiUrl: https://api.github.com
+    # @param{}
     private: false
+    # @param{}
     initialize: true
+    # @param{}
     deletionPolicy: Delete
+  # @param{}
   replaceValues:
     host: localhost
     organizationName: myorganization
