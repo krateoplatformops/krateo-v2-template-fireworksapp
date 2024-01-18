@@ -25,7 +25,8 @@ To ensure the correct execution of the CI/CD pipeline for both the Dockerfile an
 6. **Ensure Secret is Kept Confidential:**
    - Be cautious not to expose the GitHub token or any sensitive information. Keep the secret confidential and use appropriate security measures.
 
+7. **Manage action access of the package**: Add to the repository {{ .Values.git.toRepo.scmUrl }}/{{ .Values.git.toRepo.org }}/{{ .Values.git.toRepo.name }} the WRITE access permission to the package
+
 With these steps, you should have a properly configured CI/CD pipeline that uses the `GH_TOKEN` secret for authentication. If you encounter any issues, refer to the documentation or seek assistance from your CI/CD and Helm chart providers.
 
-Happy Deploying!
 =========================================================

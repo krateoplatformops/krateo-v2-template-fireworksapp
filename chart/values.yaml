@@ -30,7 +30,9 @@ git:
   deletionPolicy: Orphan
   insecure: true
   fromRepo:
-    url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp
+    scmUrl: https://github.com
+    org: krateoplatformops
+    name: krateo-v2-template-fireworksapp
     branch: 3-implement-the-chart
     path: skeleton/
     credentials:
