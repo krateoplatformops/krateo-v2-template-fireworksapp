@@ -153,8 +153,11 @@
           "default": "true"
         },
         "deletionPolicy": {
-          "enum": ["Delete", "Orphan"],
-          "title": "specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
+          "enum": [
+            "Delete",
+            "Orphan"
+          ],
+          "title": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
           "default": "Orphan"
         },
         "insecure": {
@@ -178,55 +181,35 @@
           "properties": {
             "scmUrl": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "(schema+host e.g. https://github.com) for the target Git repository",
               "default": "https://github.com"
             },
             "org": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Organization/group/subgroup for the target Git repository",
               "default": "krateoplatformops"
             },
             "name": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Name for the target Git repository",
               "default": "krateo-v2-template-fireworksapp"
             },
             "branch": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Branch of Git repository used as template for the application skeleton",
               "default": "3-implement-the-chart"
             },
             "path": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Path of Git repository used as template for the application skeleton",
               "default": "skeleton/"
@@ -240,7 +223,10 @@
               ],
               "properties": {
                 "authMethod": {
-                  "enum": ["basic", "bearer"],
+                  "enum": [
+                    "basic",
+                    "bearer"
+                  ],
                   "title": "AuthMethod defines the authentication mode. One of 'basic' or 'bearer'",
                   "default": "basic"
                 },
@@ -255,33 +241,21 @@
                   "properties": {
                     "namespace": {
                       "type": [
-                        "string",
-                        "boolean",
-                        "number",
-                        "object",
-                        "array"
+                        "string"
                       ],
                       "title": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
                       "type": [
-                        "string",
-                        "boolean",
-                        "number",
-                        "object",
-                        "array"
+                        "string"
                       ],
                       "title": "Name of the secret where the credentials are stored",
                       "default": "github-repo-creds"
                     },
                     "key": {
                       "type": [
-                        "string",
-                        "boolean",
-                        "number",
-                        "object",
-                        "array"
+                        "string"
                       ],
                       "title": "Key of the secret to use",
                       "default": "token"
@@ -310,55 +284,35 @@
           "properties": {
             "scmUrl": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "(schema+host e.g. https://github.com) for the target Git repository",
               "default": "https://github.com"
             },
             "org": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Organization/group/subgroup for the target Git repository",
               "default": "krateoplatformops"
             },
             "name": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Name for the target Git repository",
               "default": "fireworksapp-test-v2"
             },
             "branch": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Branch for the target Git repository",
               "default": "main"
             },
             "path": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "Path where the template will be placed",
               "default": "/"
@@ -372,7 +326,10 @@
               ],
               "properties": {
                 "authMethod": {
-                  "enum": ["basic", "bearer"],
+                  "enum": [
+                    "basic",
+                    "bearer"
+                  ],
                   "title": "AuthMethod defines the authentication mode. One of 'basic' or 'bearer'",
                   "default": "basic"
                 },
@@ -387,33 +344,21 @@
                   "properties": {
                     "namespace": {
                       "type": [
-                        "string",
-                        "boolean",
-                        "number",
-                        "object",
-                        "array"
+                        "string"
                       ],
                       "title": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
                       "type": [
-                        "string",
-                        "boolean",
-                        "number",
-                        "object",
-                        "array"
+                        "string"
                       ],
                       "title": "Name of the secret where the credentials are stored",
                       "default": "github-repo-creds"
                     },
                     "key": {
                       "type": [
-                        "string",
-                        "boolean",
-                        "number",
-                        "object",
-                        "array"
+                        "string"
                       ],
                       "title": "Key of the secret to use",
                       "default": "token"
@@ -424,102 +369,64 @@
             },
             "apiUrl": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "title": "URL to use for API",
               "default": "https://api.github.com"
             },
             "private": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "boolean"
               ],
+              "title": "Whether the repository is private",
               "default": "false"
             },
             "initialize": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "boolean"
               ],
+              "title": "Whether the repository must be initialized",
               "default": "true"
             },
             "deletionPolicy": {
-              "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+              "enum": [
+                "Delete",
+                "Orphan"
               ],
+              "title": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
               "default": "Delete"
             }
           }
         },
         "replaceValues": {
           "type": "object",
+          "title": "Key-value Array to use for substitution of values of skeleton app",
           "required": [
-            "host"
+            "key1",
+            "key2",
+            "key3"
           ],
           "properties": {
-            "host": {
+            "key1": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
-              "default": "localhost"
+              "title": "Key 1",
+              "default": "value1"
             },
-            "organizationName": {
+            "key2": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "number"
               ],
-              "default": "myorganization"
+              "title": "Key 2",
+              "default": "2"
             },
-            "schema": {
+            "key3": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "boolean"
               ],
-              "default": "myschema"
-            },
-            "pippo": {
-              "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
-              ],
+              "title": "Key 3",
               "default": "true"
-            },
-            "pluto": {
-              "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
-              ],
-              "default": "123123"
             }
           }
         }
