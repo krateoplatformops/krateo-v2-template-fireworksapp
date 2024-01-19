@@ -53,7 +53,7 @@ git:
     # @param{object} credentials References to the secrets that contain the credentials required to clone the repository (in case of private ones)
     credentials:
       # @param{string} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
-      authMethod: basicY
+      authMethod: basic
       # @param{object} secretRef Reference details about the secret where the credentials are stored
       secretRef:
         # @param{string} namespace Namespace of the secret where the credentials are stored 
