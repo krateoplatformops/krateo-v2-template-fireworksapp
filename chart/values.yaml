@@ -98,7 +98,7 @@ git:
   replaceValues:
     # @param {string} key1 Key 1
     key1: value1
-    # @param {number} key2 Key 2
+    # @param {integer} key2 Key 2
     key2: 2
     # @param {boolean} key3 Key 3
     key3: true
