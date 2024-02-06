@@ -3,7 +3,7 @@ name: ci-chart
 on:
   push:
     tags:
-      - *
+      - '*'
     branches:
       - main
 
