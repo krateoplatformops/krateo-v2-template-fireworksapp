@@ -34,7 +34,7 @@ git:
   deploymentServiceUrl: http://deployment-service.krateo-system.svc
   # @param {boolean} unsupportedCapabilities UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.
   unsupportedCapabilities: true
-  # @param {string} deletionPolicy DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
+  # @param {enum{Delete,Orphan}} deletionPolicy DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
   deletionPolicy: Orphan
   # @param {boolean} insecure Insecure is useful with hand made SSL certs
   insecure: true
@@ -52,7 +52,7 @@ git:
     path: skeleton/
     # @param {object} credentials References to the secrets that contain the credentials required to clone the repository (in case of private ones)
     credentials:
-      # @param {string} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
+      # @param {enum{basic,bearer}} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
       authMethod: basic
       # @param {object} secretRef Reference details about the secret where the credentials are stored
       secretRef:
@@ -76,7 +76,7 @@ git:
     path: /
     # @param {object} credentials References to the secrets that contain the credentials required to push the content the repository (in case of private ones)
     credentials:
-      # @param {string} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
+      # @param {enum{basic,bearer}} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
       authMethod: basic
       # @param {object} secretRef Reference details about the secret where the credentials are stored
       secretRef:
@@ -92,13 +92,13 @@ git:
     private: false
     # @param {boolean} initialize Whether the repository must be initialized
     initialize: true
-    # @param {string} deletionPolicy DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
+    # @param {enum{Delete,Orphan}} deletionPolicy DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
     deletionPolicy: Delete
   # @param {object} replaceValues Key-value Array to use for substitution of values of skeleton app
   replaceValues:
-    # @param {string} key1 Key 1
-    key1: value1
-    # @param {integer} key2 Key 2
-    key2: 2
+    # @param {string{minLength=5,maxLength=10}} key1 Key 1
+    key1: va
+    # @param {integer{min=1,max=5}} key2 Key 2
+    key2: 1
     # @param {boolean} key3 Key 3
     key3: true
