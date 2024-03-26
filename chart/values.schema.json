@@ -153,6 +153,13 @@
           "default": "true"
         },
         "deletionPolicy": {
+          "type": [
+            "string",
+            "boolean",
+            "number",
+            "object",
+            "array"
+          ],
           "enum": [
             "Delete",
             "Orphan"
@@ -223,6 +230,13 @@
               ],
               "properties": {
                 "authMethod": {
+                  "type": [
+                    "string",
+                    "boolean",
+                    "number",
+                    "object",
+                    "array"
+                  ],
                   "enum": [
                     "basic",
                     "bearer"
@@ -326,6 +340,13 @@
               ],
               "properties": {
                 "authMethod": {
+                  "type": [
+                    "string",
+                    "boolean",
+                    "number",
+                    "object",
+                    "array"
+                  ],
                   "enum": [
                     "basic",
                     "bearer"
@@ -389,6 +410,13 @@
               "default": "true"
             },
             "deletionPolicy": {
+              "type": [
+                "string",
+                "boolean",
+                "number",
+                "object",
+                "array"
+              ],
               "enum": [
                 "Delete",
                 "Orphan"
@@ -408,20 +436,18 @@
           ],
           "properties": {
             "key1": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 10,
               "title": "Key 1",
-              "default": "value1"
+              "default": "va"
             },
             "key2": {
-              "type": [
-                "integer"
-              ],
-              "title": "Key 2",
-              "default": "2",
+              "type": "integer",
               "minimum": 1,
-              "maximum": 5
+              "maximum": 5,
+              "title": "Key 2",
+              "default": "1"
             },
             "key3": {
               "type": [
