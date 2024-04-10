@@ -30,7 +30,7 @@ argocd:
 
 # @param {object} git Git Repository parameters section
 git:
-  # @param {string} deploymentServiceUrl URL of Krateo deployment-service 
+  # @param {string} deploymentServiceUrl URL of Krateo deployment-service
   deploymentServiceUrl: http://deployment-service.krateo-system.svc
   # @param {boolean} unsupportedCapabilities UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.
   unsupportedCapabilities: true
@@ -56,9 +56,9 @@ git:
       authMethod: basic
       # @param {object} secretRef Reference details about the secret where the credentials are stored
       secretRef:
-        # @param {string} namespace Namespace of the secret where the credentials are stored 
+        # @param {string} namespace Namespace of the secret where the credentials are stored
         namespace: krateo-system
-        # @param {string} name Name of the secret where the credentials are stored 
+        # @param {string} name Name of the secret where the credentials are stored
         name: github-repo-creds
         # @param {string} key Key of the secret to use
         key: token
@@ -80,9 +80,9 @@ git:
       authMethod: basic
       # @param {object} secretRef Reference details about the secret where the credentials are stored
       secretRef:
-        # @param {string} namespace Namespace of the secret where the credentials are stored 
+        # @param {string} namespace Namespace of the secret where the credentials are stored
         namespace: krateo-system
-        # @param {string} name Name of the secret where the credentials are stored 
+        # @param {string} name Name of the secret where the credentials are stored
         name: github-repo-creds
         # @param {string} key Key of the secret to use
         key: token
@@ -97,7 +97,7 @@ git:
   # @param {object} replaceValues Key-value Array to use for substitution of values of skeleton app
   replaceValues:
     # @param {string{minLength=5,maxLength=10}} key1 Key 1
-    key1: va
+    key1: length
     # @param {integer{min=1,max=5}} key2 Key 2
     key2: 1
     # @param {boolean} key3 Key 3
