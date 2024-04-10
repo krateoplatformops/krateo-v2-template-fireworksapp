@@ -1,0 +1,40 @@
+name: release
+
+on:
+  push:
+    tags: ["[0-9]+.[0-9]+.[0-9]+"]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Extract Version
+        id: tagger
+        uses: battila7/get-version-action@v2
+
+      - name: Print Version
+        run: |
+          echo ${{steps.tagger.outputs.version}}
+          echo ${{steps.tagger.outputs.version-without-v}}
+
+      - name: Replace Version in Chart.yaml
+        run: sed -i 's/CHART_VERSION/${{ steps.tagger.outputs.version-without-v }}/g' ./chart/Chart.yaml
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4.1.0
+
+      - name: Package
+        run: |
+          helm package ./chart
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.tgz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
