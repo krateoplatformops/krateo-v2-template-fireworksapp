@@ -129,7 +129,6 @@
       "type": "object",
       "title": "Git Repository parameters section",
       "required": [
-        "deploymentServiceUrl",
         "unsupportedCapabilities",
         "deletionPolicy",
         "insecure",
@@ -138,13 +137,6 @@
         "replaceValues"
       ],
       "properties": {
-        "deploymentServiceUrl": {
-          "type": [
-            "string"
-          ],
-          "title": "URL of Krateo deployment-service",
-          "default": "http://deployment-service.krateo-system.svc"
-        },
         "unsupportedCapabilities": {
           "type": [
             "boolean"
