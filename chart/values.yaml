@@ -28,6 +28,15 @@ argocd:
       syncOptions:
         - CreateNamespace=true
 
+# @param {object} app Helm Chart parameters section
+app:
+  # @param {object} app Helm Chart service parameters section
+  service:
+    # @param {enum{NodePort,LoadBalancer}} app Helm Chart service type
+    type: NodePort
+    # @param {number} app Helm Chart service port
+    port: 31180
+
 # @param {object} git Git Repository parameters section
 git:
   # @param {boolean} unsupportedCapabilities UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.

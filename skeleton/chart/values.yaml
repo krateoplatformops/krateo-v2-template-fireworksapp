@@ -39,9 +39,9 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: NodePort
-  port: 80
-
+  type: <% serviceType %>
+  port: <% servicePort %>
+  
 ingress:
   enabled: false
   className: ""
