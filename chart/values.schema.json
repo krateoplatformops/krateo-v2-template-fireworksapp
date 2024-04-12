@@ -133,8 +133,7 @@
         "deletionPolicy",
         "insecure",
         "fromRepo",
-        "toRepo",
-        "replaceValues"
+        "toRepo"
       ],
       "properties": {
         "unsupportedCapabilities": {
@@ -415,38 +414,6 @@
               ],
               "title": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
               "default": "Delete"
-            }
-          }
-        },
-        "replaceValues": {
-          "type": "object",
-          "title": "Key-value Array to use for substitution of values of skeleton app",
-          "required": [
-            "key1",
-            "key2",
-            "key3"
-          ],
-          "properties": {
-            "key1": {
-              "type": "string",
-              "minLength": 5,
-              "maxLength": 10,
-              "title": "Key 1",
-              "default": "va"
-            },
-            "key2": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 5,
-              "title": "Key 2",
-              "default": "1"
-            },
-            "key3": {
-              "type": [
-                "boolean"
-              ],
-              "title": "Key 3",
-              "default": "true"
             }
           }
         }

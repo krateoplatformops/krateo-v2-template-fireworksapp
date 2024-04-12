@@ -6,15 +6,6 @@ metadata:
     {{- include "fireworks-app.labels" . | nindent 4 }}
 data:
   values: |
-    { 
-{{- $local := dict "first" true -}}
-{{- range $k, $v := .Values.git.replaceValues -}}
-{{- if not $local.first -}},{{- end -}}
-{{- if kindIs "string" $v }}
-  {{ quote $k | indent 6 }}: {{ quote $v }}
-{{- else }}
-  {{ quote $k | indent 6 }}: {{ $v }}
-{{- end }}
-{{- $_ := set $local "first" false -}}
-{{- end -}}
+    { "organizationName": "%s",
+      "repositoryName": "%s"
     }

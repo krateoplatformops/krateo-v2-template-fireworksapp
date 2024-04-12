@@ -92,11 +92,3 @@ git:
     initialize: true
     # @param {enum{Delete,Orphan}} deletionPolicy DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
     deletionPolicy: Delete
-  # @param {object} replaceValues Key-value Array to use for substitution of values of skeleton app
-  replaceValues:
-    # @param {string{minLength=5,maxLength=10}} key1 Key 1
-    key1: length
-    # @param {integer{min=1,max=5}} key2 Key 2
-    key2: 1
-    # @param {boolean} key3 Key 3
-    key3: true
