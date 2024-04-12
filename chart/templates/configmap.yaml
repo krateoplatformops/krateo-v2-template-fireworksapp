@@ -6,6 +6,6 @@ metadata:
     {{- include "fireworks-app.labels" . | nindent 4 }}
 data:
   values: |
-    { "organizationName": "%s",
-      "repositoryName": "%s"
+    { "organizationName": "{{ .Values.git.toRepo.org }}",
+      "repositoryName": "{{ .Values.git.toRepo.name }}"
     }
