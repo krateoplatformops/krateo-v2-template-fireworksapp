@@ -1,5 +1,3 @@
-[![release](https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/actions/workflows/release.yml/badge.svg)](https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/actions/workflows/release.yml) [![semantic-release: angular](https://img.shields.io/badge/semantic--release-conventional-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
-
 # Krateo V2 Template Fireworks app
 
 This is a template used to scaffold a toolchain to host and deploy a fully functional frontend App (FireworksApp).
@@ -14,8 +12,6 @@ This Template implements the following steps:
 ## How to install
 
 ```sh
-helm install krateo-v2-template-fireworksapp https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/releases/download/0.1.0/fireworks-app-0.1.0.tgz --create-namespace --namespace krateo-system
-
 apiVersion: core.krateo.io/v1alpha1
 kind: CompositionDefinition
 metadata:
