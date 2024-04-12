@@ -3,6 +3,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "required": [
     "argocd",
+    "app",
     "git"
   ],
   "properties": {
@@ -19,7 +20,7 @@
             "string"
           ],
           "title": "Namespace where ArgoCD has been installed",
-          "default": "argocd"
+          "default": "krateo-system"
         },
         "application": {
           "type": "object",
@@ -125,6 +126,47 @@
         }
       }
     },
+    "app": {
+      "type": "object",
+      "title": "Helm Chart parameters section",
+      "required": [
+        "service"
+      ],
+      "properties": {
+        "service": {
+          "type": "object",
+          "title": "Helm Chart service parameters section",
+          "required": [
+            "type",
+            "port"
+          ],
+          "properties": {
+            "type": {
+              "type": [
+                "string",
+                "boolean",
+                "number",
+                "object",
+                "array"
+              ],
+              "enum": [
+                "NodePort",
+                "LoadBalancer"
+              ],
+              "title": "Helm Chart service type",
+              "default": "NodePort"
+            },
+            "port": {
+              "type": [
+                "number"
+              ],
+              "title": "Helm Chart service port",
+              "default": "31180"
+            }
+          }
+        }
+      }
+    },
     "git": {
       "type": "object",
       "title": "Git Repository parameters section",
@@ -203,7 +245,7 @@
                 "string"
               ],
               "title": "Branch of Git repository used as template for the application skeleton",
-              "default": "3-implement-the-chart"
+              "default": "main"
             },
             "path": {
               "type": [
@@ -299,7 +341,7 @@
                 "string"
               ],
               "title": "Organization/group/subgroup for the target Git repository",
-              "default": "krateoplatformops"
+              "default": "krateoplatformops-archive"
             },
             "name": {
               "type": [
