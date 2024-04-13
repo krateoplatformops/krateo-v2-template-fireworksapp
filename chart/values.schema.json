@@ -158,7 +158,7 @@
             },
             "port": {
               "type": [
-                "number"
+                "integer"
               ],
               "title": "Helm Chart service port",
               "default": "31180"
