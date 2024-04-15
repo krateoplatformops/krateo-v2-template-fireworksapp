@@ -17,11 +17,11 @@ kind: CompositionDefinition
 metadata:
   annotations:
      "krateo.io/connector-verbose": "true"
-  name: krateo-v2-template-fireworksapp
+  name: fireworksapp-tgz
   namespace: demo-system
 spec:
   chart:
-    url: ttps://github.com/krateoplatformops/krateo-v2-template-fireworksapp/releases/download/0.1.0/fireworks-app-0.1.0.tgz
+    url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/releases/download/0.1.0/fireworks-app-0.1.0.tgz
 ```
 
 ## Requirements
@@ -33,7 +33,7 @@ helm install github-provider krateo/github-provider --namespace krateo-system --
 helm install git-provider krateo/git-provider --namespace krateo-system --create-namespace
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update argo
-helm install argocd argo/argo-cd --version 6.7.11 --namespace krateo-system --create-namespace --wait
+helm install argocd argo/argo-cd --namespace krateo-system --create-namespace --wait
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
