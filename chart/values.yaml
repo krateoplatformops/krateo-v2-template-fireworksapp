@@ -34,7 +34,7 @@ app:
   service:
     # @param {enum{NodePort,LoadBalancer}} app Helm Chart service type
     type: NodePort
-    # @param {integer} app Helm Chart service port
+    # @param {integer{min=30000,max=32767}} app Helm Chart service port
     port: 31180
 
 # @param {object} git Git Repository parameters section
