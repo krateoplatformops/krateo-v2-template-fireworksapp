@@ -157,9 +157,9 @@
               "default": "NodePort"
             },
             "port": {
-              "type": [
-                "integer"
-              ],
+              "type": "integer",
+              "minimum": 30000,
+              "maximum": 32767,
               "title": "Helm Chart service port",
               "default": "31180"
             }
