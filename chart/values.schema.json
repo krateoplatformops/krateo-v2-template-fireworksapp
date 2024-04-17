@@ -83,8 +83,7 @@
               "type": "object",
               "title": "ArgoCD Application synchronization policies section",
               "required": [
-                "automated",
-                "syncOptions"
+                "automated"
               ],
               "properties": {
                 "automated": {
@@ -109,15 +108,6 @@
                       "title": "SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster",
                       "default": "true"
                     }
-                  }
-                },
-                "syncOptions": {
-                  "type": "array",
-                  "title": "Options allow you to specify whole app sync-options",
-                  "items": {
-                    "type": [
-                      "string"
-                    ]
                   }
                 }
               }
