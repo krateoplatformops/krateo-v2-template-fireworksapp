@@ -24,9 +24,6 @@ argocd:
         prune: true
         # @param {boolean} selfHeal SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster
         selfHeal: true
-      # @param {string[]} syncOptions Options allow you to specify whole app sync-options
-      syncOptions:
-        - CreateNamespace=true
 
 # @param {object} app Helm Chart parameters section
 app:

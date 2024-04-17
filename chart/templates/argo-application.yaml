@@ -18,7 +18,5 @@ spec:
     automated:
       prune: {{ .Values.argocd.application.syncPolicy.automated.prune }}
       selfHeal: {{ .Values.argocd.application.syncPolicy.automated.selfHeal }}
-    syncOptions: 
-    {{- range .Values.argocd.application.syncPolicy.syncOptions }}
-      - {{ . }}
-    {{- end }}
+    syncOptions:
+      - CreateNamespace=true
