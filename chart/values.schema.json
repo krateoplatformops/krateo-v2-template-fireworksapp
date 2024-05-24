@@ -132,13 +132,7 @@
           ],
           "properties": {
             "type": {
-              "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
-              ],
+              "type": "string",
               "enum": [
                 "NodePort",
                 "LoadBalancer"
@@ -176,13 +170,7 @@
           "default": "true"
         },
         "deletionPolicy": {
-          "type": [
-            "string",
-            "boolean",
-            "number",
-            "object",
-            "array"
-          ],
+          "type": "string",
           "enum": [
             "Delete",
             "Orphan"
@@ -253,13 +241,7 @@
               ],
               "properties": {
                 "authMethod": {
-                  "type": [
-                    "string",
-                    "boolean",
-                    "number",
-                    "object",
-                    "array"
-                  ],
+                  "type": "string",
                   "enum": [
                     "basic",
                     "bearer"
@@ -363,13 +345,7 @@
               ],
               "properties": {
                 "authMethod": {
-                  "type": [
-                    "string",
-                    "boolean",
-                    "number",
-                    "object",
-                    "array"
-                  ],
+                  "type": "string",
                   "enum": [
                     "basic",
                     "bearer"
@@ -433,13 +409,7 @@
               "default": "true"
             },
             "deletionPolicy": {
-              "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
-              ],
+              "type": "string",
               "enum": [
                 "Delete",
                 "Orphan"
