@@ -23,3 +23,10 @@ version: CHART_VERSION
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: CHART_VERSION
+
+dependencies:
+- name: composition-portal-basic
+  condition: portal.enabled
+  version: "0.1.1"
+  repository: "https://charts.krateo.io"
+  alias: portal
