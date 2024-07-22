@@ -24,8 +24,8 @@ jobs:
       - name: Replace Version in Chart.yaml
         run: sed -i 's/CHART_VERSION/${{ steps.tagger.outputs.version-without-v }}/g' ./chart/Chart.yaml
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Publish Helm chart
+        uses: stefanprodan/helm-gh-pages@master
         with:
           token: ${{ secrets.HELM_CHARTS_BOT }}
           charts_dir: ./
