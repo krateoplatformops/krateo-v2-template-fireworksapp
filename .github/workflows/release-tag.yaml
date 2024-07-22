@@ -1,4 +1,4 @@
-name: release
+name: release-tag
 
 on:
   push:
@@ -24,25 +24,12 @@ jobs:
       - name: Replace Version in Chart.yaml
         run: sed -i 's/CHART_VERSION/${{ steps.tagger.outputs.version-without-v }}/g' ./chart/Chart.yaml
 
-      - name: Set up Helm
-        uses: azure/setup-helm@v4.1.0
-
-      - name: Build Helm dependencies
-        run: |
-          helm dependency build ./chart
-
-      - name: Lint Helm chart
-        run: |
-          helm lint ./chart
-
-      - name: Package
-        run: |
-          helm package ./chart
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Publish Helm chart
+        uses: stefanprodan/helm-gh-pages@master
         with:
-          files: |
-            *.tgz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.HELM_CHARTS_BOT }}
+          charts_dir: ./
+          charts_url: https://charts.krateo.io
+          owner: krateoplatformops
+          repository: helm-charts
+          branch: gh-pages
