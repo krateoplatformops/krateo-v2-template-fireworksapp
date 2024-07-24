@@ -9,21 +9,6 @@ This Template implements the following steps:
 4. An ArgoCD Application will be deployed to listen to the Helm Chart of the FireworksApp application and deploy the chart on the same Kubernetes cluster where ArgoCD is hosted
 5. The FireworksApp will be deployed with a Service type of NodePort kind exposed on the chosen port.
 
-## How to install
-
-```sh
-apiVersion: core.krateo.io/v1alpha1
-kind: CompositionDefinition
-metadata:
-  annotations:
-     "krateo.io/connector-verbose": "true"
-  name: fireworksapp-tgz
-  namespace: demo-system
-spec:
-  chart:
-    url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/releases/download/0.1.0/fireworks-app-0.1.0.tgz
-```
-
 ## Requirements
 
 ```sh
@@ -44,5 +29,30 @@ metadata:
   name: github-repo-creds
   namespace: krateo-system
 type: Opaque
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: eventsse-internal-endpoint
+  namespace: krateo-system
+stringData:
+  server-url: http://eventsse-internal.krateo-system.svc:8083
+---
 EOF
+```
+
+## How to install
+
+```sh
+apiVersion: core.krateo.io/v1alpha1
+kind: CompositionDefinition
+metadata:
+  annotations:
+     "krateo.io/connector-verbose": "true"
+  name: fireworksapp-tgz
+  namespace: demo-system
+spec:
+  chart:
+    url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/releases/download/0.1.0/fireworks-app-0.1.0.tgz
 ```
