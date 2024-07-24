@@ -35,7 +35,7 @@ kind: Secret
 type: Opaque
 metadata:
   name: eventsse-internal-endpoint
-  namespace: krateo-system
+  namespace: demo-system
 stringData:
   server-url: http://eventsse-internal.krateo-system.svc:8083
 ---
