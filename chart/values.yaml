@@ -101,4 +101,4 @@ git:
 portal:
   enabled: true
   overview:
-    test: Firworksapp overview text
+    text: Fireworksapp overview text
