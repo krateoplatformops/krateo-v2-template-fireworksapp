@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ include "fireworks-app.fullname" . }}
+  name: {{ .Release.Name }}
   namespace: {{ .Values.argocd.namespace | default "argocd" }}
   labels:
     {{- include "fireworks-app.labels" . | nindent 4 }}
