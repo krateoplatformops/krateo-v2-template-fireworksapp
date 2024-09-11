@@ -1,0 +1,6 @@
+dependencies:
+- name: composition-portal-basic
+  repository: https://charts.krateo.io
+  version: 0.1.10
+digest: sha256:1169dc12fc53995367b6a803308da61f82235c7a43cb3543ee484f7bb2db395c
+generated: "2024-07-30T22:24:00.954239+02:00"

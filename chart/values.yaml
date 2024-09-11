@@ -100,5 +100,20 @@ git:
     deletionPolicy: Delete
 portal:
   enabled: true
+  card:
+    icon: fa-cubes
+    title: FireworksApp
+    color: blue
+    content: This is a card for FireworksApp composition
   overview:
+    enabled: true
     text: Fireworksapp overview text
+  compositionstatus:
+    enabled: true
+  applicationstatus:
+    enabled: true
+  terminal:
+    enabled: false
+  events:
+    enabled: true
+  namespace: krateo-system
