@@ -97,7 +97,3 @@ spec:
   chart:
     url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/releases/download/0.1.0/fireworks-app-0.1.0.tgz
 ```
-
-data:
-  policy.default: role:readonly
-  policy.matchMode: glob
