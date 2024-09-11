@@ -11,6 +11,10 @@ This Template implements the following steps:
 
 ## Requirements
 
+- Install argo CLI: https://argo-cd.readthedocs.io/en/stable/cli_installation/
+
+### Setup toolchain on krateo-system namespace
+
 ```sh
 helm repo add krateo https://charts.krateo.io
 helm repo update krateo
@@ -19,7 +23,54 @@ helm install git-provider krateo/git-provider --namespace krateo-system --create
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update argo
 helm install argocd argo/argo-cd --namespace krateo-system --create-namespace --wait
+```
 
+### Create a *krateo-account* user on ArgoCD
+
+```sh
+kubectl patch configmap argocd-cm -n krateo-system --patch '{"data": {"accounts.krateo-account": "apiKey, login"}}'
+kubectl patch configmap argocd-rbac-cm -n krateo-system --patch '{"data": {"policy.default": "role:readonly"}}'
+```
+
+### Generate a token for *krateo-account* user
+
+In order to generate a token, follow this instructions:
+
+```sh
+kubectl port-forward service/argocd-server -n krateo-system 8443:443
+```
+
+Open a new terminal and execute the following commands:
+
+```sh
+PASSWORD=$(kubectl -n krateo-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+argocd login localhost:8443 --insecure --username admin --password $PASSWORD
+argocd account list
+TOKEN=$(argocd account generate-token --account krateo-account)
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: argocd-endpoint
+  namespace: krateo-system
+stringData:
+  insecure: "true"
+  server-url: https://argocd-server.krateo-system.svc:443
+  token: $TOKEN
+EOF
+```
+
+### Generate a token for GitHub user
+
+In order to generate a token, follow this instructions: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic
+
+Give the following permissions: delete:packages, delete_repo, repo, workflow, write:packages
+
+Substitute the <PAT> value with the generated token:
+
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 stringData:
@@ -29,16 +80,6 @@ metadata:
   name: github-repo-creds
   namespace: krateo-system
 type: Opaque
----
-apiVersion: v1
-kind: Secret
-type: Opaque
-metadata:
-  name: eventsse-internal-endpoint
-  namespace: krateo-system
-stringData:
-  server-url: http://eventsse-internal.krateo-system.svc:8083
----
 EOF
 ```
 
