@@ -12,6 +12,7 @@ This Template implements the following steps:
 ## Requirements
 
 - Install argo CLI: https://argo-cd.readthedocs.io/en/stable/cli_installation/
+- Have Krateo PlatformOps installed: https://docs.krateo.io/
 
 ### Setup toolchain on krateo-system namespace
 
@@ -85,15 +86,42 @@ EOF
 
 ## How to install
 
+### With *Krateo Composable Portal*
+
 ```sh
+cat <<EOL > values.yaml
+chart:
+  # when helm is in a registry
+  url: https://charts.krateo.io
+  version: 1.1.3
+  repo: fireworks-app
+
+card:
+  icon: fa-cubes
+  title: FireworksApp
+  color: blue
+  content: This is a card for FireworksApp template
+EOL
+
+helm repo add krateo https://charts.krateo.io
+helm repo update krateo
+helm install fireworksapp krateo/compositiondefinition -n fireworksapp-system --create-namespace -f values.yaml
+```
+
+### Without *Krateo Composable Portal*
+
+```sh
+cat <<EOF | kubectl apply -f -
 apiVersion: core.krateo.io/v1alpha1
 kind: CompositionDefinition
 metadata:
-  annotations:
-     "krateo.io/connector-verbose": "true"
-  name: fireworksapp-tgz
-  namespace: demo-system
+  name: fireworksapp
+  namespace: krateo-system
 spec:
   chart:
-    url: https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/releases/download/0.1.0/fireworks-app-0.1.0.tgz
+    repo: fireworks-app
+    served: true
+    url: https://charts.krateo.io
+    version: 1.1.3
+EOF
 ```
