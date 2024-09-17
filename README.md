@@ -89,25 +89,11 @@ EOF
 ### With *Krateo Composable Portal*
 
 ```sh
-cat <<EOF | kubectl apply -f -
-apiVersion: core.krateo.io/v1alpha1
-kind: CompositionDefinition
-metadata:
-  name: fireworksapp
-  namespace: krateo-system
-spec:
-  chart:
-    repo: fireworks-app
-    served: true
-    url: https://charts.krateo.io
-    version: 1.1.3
-EOF
-
 cat <<EOL > values.yaml
 chart:
   # when helm is in a registry
   url: https://charts.krateo.io
-  version: 1.1.2
+  version: 1.1.3
   repo: fireworks-app
 
 card:
@@ -119,7 +105,7 @@ EOL
 
 helm repo add krateo https://charts.krateo.io
 helm repo update krateo
-helm install fireworksapp krateo/compositiondefinition -n fireworksapp-system --create-namespace
+helm install fireworksapp krateo/compositiondefinition -n fireworksapp-system --create-namespace -f values.yaml
 ```
 
 ### Without *Krateo Composable Portal*
