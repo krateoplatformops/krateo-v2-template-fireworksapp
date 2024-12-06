@@ -93,7 +93,7 @@ cat <<EOL > values.yaml
 chart:
   # when helm is in a registry
   url: https://charts.krateo.io
-  version: 1.1.3
+  version: 1.1.9
   repo: fireworks-app
 
 card:
@@ -101,11 +101,12 @@ card:
   title: FireworksApp
   color: blue
   content: This is a card for FireworksApp template
+  tags: 1.1.9
 EOL
 
 helm repo add krateo https://charts.krateo.io
 helm repo update krateo
-helm install fireworksapp krateo/compositiondefinition -n fireworksapp-system --create-namespace -f values.yaml
+helm install fireworksapp krateo/template -n fireworksapp-system --create-namespace -f values.yaml
 ```
 
 ### Without *Krateo Composable Portal*
@@ -122,6 +123,6 @@ spec:
     repo: fireworks-app
     served: true
     url: https://charts.krateo.io
-    version: 1.1.3
+    version: 1.1.9
 EOF
 ```
