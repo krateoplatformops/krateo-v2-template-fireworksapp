@@ -1,0 +1,48 @@
+apiVersion: v1
+data:
+  panel: "true"
+kind: ConfigMap
+metadata:
+  name: template-fireworksapp-card
+  namespace: fireworksapp-system
+---
+apiVersion: templates.krateo.io/v1alpha1
+kind: Widget
+metadata:
+  name: template-fireworksapp-card
+  namespace: fireworksapp-system
+spec:
+  actions:
+  - template:
+      apiVersion: templates.krateo.io/v1alpha1
+      name: template-fireworksapp-form
+      namespace: fireworksapp-system
+      resource: forms
+      verb: GET
+  - template:
+      apiVersion: core.krateo.io/v1alpha1
+      name: fireworksapp
+      namespace: fireworksapp-system
+      resource: compositiondefinitions
+      verb: DELETE
+  app:
+    template:
+      color: blue
+      content: This is a card for FireworksApp template (classic form)
+      icon: fa-cubes
+      tags: fireworksapp-system,1.1.10
+      title: FireworksApp
+  propsRef:
+    name: template-fireworksapp-card
+    namespace: fireworksapp-system
+  type: card
+---
+apiVersion: templates.krateo.io/v1alpha1
+kind: CustomForm
+metadata:
+  name: template-fireworksapp-form
+  namespace: fireworksapp-system
+spec:
+  compositionDefinitionRef:
+    name: fireworksapp
+    namespace: fireworksapp-system

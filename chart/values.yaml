@@ -1,70 +1,70 @@
-# @param {object} argocd ArgoCD parameters section
+# @param {object} [argocd] ArgoCD parameters section
 argocd:
-  # @param {string} namespace Namespace where ArgoCD has been installed
+  # @param {string} [namespace] Namespace where ArgoCD has been installed
   namespace: krateo-system
-  # @param {object} application ArgoCD application configuration section
+  # @param {object} [application] ArgoCD application configuration section
   application:
-    # @param {string} project ArgoCD Application project
+    # @param {string} [project] ArgoCD Application project
     project: default
-    # @param {object} source ArgoCD Application source parameters section
+    # @param {object} [source] ArgoCD Application source parameters section
     source:
-      # @param {string} path ArgoCD Application source path inside the repository created by the template
+      # @param {string} [path] ArgoCD Application source path inside the repository created by the template
       path: chart/
-    # @param {object} project ArgoCD Application destination parameters section
+    # @param {object} [project] ArgoCD Application destination parameters section
     destination:
-      # @param {string} server ArgoCD Application target cluster
+      # @param {string} [server] ArgoCD Application target cluster
       server: https://kubernetes.default.svc
-      # @param {string} namespace ArgoCD Application target namespace
+      # @param {string} [namespace] ArgoCD Application target namespace
       namespace: fireworks-app
-    # @param {object} syncPolicy ArgoCD Application synchronization policies section
+    # @param {object} [syncPolicy] ArgoCD Application synchronization policies section
     syncPolicy:
-      # @param {object} automated ArgoCD Application automated synchronization policies section
+      # @param {object} [automated] ArgoCD Application automated synchronization policies section
       automated:
-        # @param {boolean} prune Prune specifies to delete resources from the cluster that are no longer tracked in git
+        # @param {boolean} [prune] Prune specifies to delete resources from the cluster that are no longer tracked in git
         prune: true
-        # @param {boolean} selfHeal SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster
+        # @param {boolean} [selfHeal] SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster
         selfHeal: true
 
-# @param {object} app Helm Chart parameters section
+# @param {object} [app] Helm Chart parameters section
 app:
-  # @param {object} app Helm Chart service parameters section
+  # @param {object} [service] Helm Chart service parameters section
   service:
-    # @param {enum{NodePort,LoadBalancer}} app Helm Chart service type
+    # @param {enum{NodePort,LoadBalancer}} [type] Helm Chart service type
     type: NodePort
-    # @param {integer{min=30000,max=32767}} app Helm Chart service port
+    # @param {integer{min=30000,max=32767}} [port] Helm Chart service port
     port: 31180
 
 # @param {object} git Git Repository parameters section
 git:
-  # @param {boolean} unsupportedCapabilities UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.
+  # @param {boolean} [unsupportedCapabilities] UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.
   unsupportedCapabilities: true
-  # @param {enum{Delete,Orphan}} deletionPolicy DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
+  # @param {enum{Delete,Orphan}} [deletionPolicy] DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
   deletionPolicy: Orphan
-  # @param {boolean} insecure Insecure is useful with hand made SSL certs
+  # @param {boolean} [insecure] Insecure is useful with hand made SSL certs
   insecure: true
-  # @param {object} fromRepo Parameters section for Git repository used as template for the application skeleton
+  # @param {object} [fromRepo] Parameters section for Git repository used as template for the application skeleton
   fromRepo:
-    # @param {string} scmUrl (schema+host e.g. https://github.com) for the target Git repository
+    # @param {string} [scmUrl] (schema+host e.g. https://github.com) for the target Git repository
     scmUrl: https://github.com
-    # @param {string} org Organization/group/subgroup for the target Git repository
+    # @param {string} [org] Organization/group/subgroup for the target Git repository
     org: krateoplatformops
-    # @param {string} name Name for the target Git repository
+    # @param {string} [name] Name for the target Git repository
     name: krateo-v2-template-fireworksapp
-    # @param {string} branch Branch of Git repository used as template for the application skeleton
+    # @param {string} [branch] Branch of Git repository used as template for the application skeleton
     branch: main
-    # @param {string} path Path of Git repository used as template for the application skeleton
+    # @param {string} [path] Path of Git repository used as template for the application skeleton
     path: skeleton/
-    # @param {object} credentials References to the secrets that contain the credentials required to clone the repository (in case of private ones)
+    # @param {object} [credentials] References to the secrets that contain the credentials required to clone the repository (in case of private ones)
     credentials:
-      # @param {enum{basic,bearer}} authMethod AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
+      # @param {enum{basic,bearer}} [authMethod] AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
       authMethod: basic
-      # @param {object} secretRef Reference details about the secret where the credentials are stored
+      # @param {object} [secretRef] Reference details about the secret where the credentials are stored
       secretRef:
-        # @param {string} namespace Namespace of the secret where the credentials are stored
+        # @param {string} [namespace] Namespace of the secret where the credentials are stored
         namespace: krateo-system
-        # @param {string} name Name of the secret where the credentials are stored
+        # @param {string} [name] Name of the secret where the credentials are stored
         name: github-repo-creds
-        # @param {string} key Key of the secret to use
+        # @param {string} [key] Key of the secret to use
         key: token
   # @param {object} toRepo Parameters section for Git repository that will be created by Krateo
   toRepo:
