@@ -1,0 +1,83 @@
+apiVersion: v1
+data:
+  panel: "true"
+kind: ConfigMap
+metadata:
+  name: template-fireworksapp-card
+  namespace: fireworksapp-system
+---
+apiVersion: templates.krateo.io/v1alpha1
+kind: Widget
+metadata:
+  name: template-fireworksapp-card
+  namespace: fireworksapp-system
+spec:
+  actions:
+  - template:
+      apiVersion: templates.krateo.io/v1alpha1
+      name: template-fireworksapp-customform
+      namespace: fireworksapp-system
+      resource: customforms
+      verb: GET
+  - template:
+      apiVersion: core.krateo.io/v1alpha1
+      name: fireworksapp
+      namespace: fireworksapp-system
+      resource: compositiondefinitions
+      verb: DELETE
+  app:
+    template:
+      color: blue
+      content: This is a card for FireworksApp template (custom form)
+      icon: fa-cubes
+      tags: fireworksapp-system,1.1.10
+      title: FireworksApp
+  propsRef:
+    name: template-fireworksapp-card
+    namespace: fireworksapp-system
+  type: card
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: template-fireworksapp-customform
+  namespace: fireworksapp-system
+data:
+  onSubmitId: submit
+  onSubmitVerb: POST
+  payloadFormKey: spec
+---
+apiVersion: templates.krateo.io/v1alpha1
+kind: CustomForm
+metadata:
+  name: template-fireworksapp-customform
+  namespace: fireworksapp-system
+spec:
+  type: customform
+  propsRef:
+    name: template-fireworksapp-customform
+    namespace: fireworksapp-system
+  actions:
+    - template:
+        id: submit
+        apiVersion: composition.krateo.io/v1-1-8
+        verb: POST
+        resource: fireworksapps
+        payloadToOverride:
+        - name: metadata.name
+          value: ${ git.toRepo.name }
+        - name: metadata.namespace
+          value: ${ "template-fireworksapp-customform" }
+  app:
+    template:
+      schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-8") | .schema.openAPIV3Schema.properties.spec.properties }
+      propertiesToHide: 
+      - argocd
+      - git.properties.fromRepo
+      - app
+  api:
+  - name: getCRD
+    path: "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/fireworksapps.composition.krateo.io"
+    verb: GET
+    headers:
+    - 'Accept: application/json'
