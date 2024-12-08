@@ -144,11 +144,7 @@
         },
         "deletionPolicy": {
           "type": [
-            "string",
-            "boolean",
-            "number",
-            "object",
-            "array"
+            "string"
           ],
           "enum": [
             "Delete",
@@ -211,11 +207,7 @@
               "properties": {
                 "authMethod": {
                   "type": [
-                    "string",
-                    "boolean",
-                    "number",
-                    "object",
-                    "array"
+                    "string"
                   ],
                   "enum": [
                     "basic",
@@ -316,11 +308,7 @@
               "properties": {
                 "authMethod": {
                   "type": [
-                    "string",
-                    "boolean",
-                    "number",
-                    "object",
-                    "array"
+                    "string"
                   ],
                   "enum": [
                     "basic",
@@ -386,11 +374,7 @@
             },
             "deletionPolicy": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "enum": [
                 "Delete",
