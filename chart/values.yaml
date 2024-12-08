@@ -84,7 +84,7 @@ git:
       authMethod: basic
       # @param {object} [secretRef] Reference details about the secret where the credentials are stored
       secretRef:
-        # @param {string} ]namespace] Namespace of the secret where the credentials are stored
+        # @param {string} [namespace] Namespace of the secret where the credentials are stored
         namespace: krateo-system
         # @param {string} [name] Name of the secret where the credentials are stored
         name: github-repo-creds

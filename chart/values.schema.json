@@ -273,8 +273,7 @@
               "type": [
                 "string"
               ],
-              "description": "Name for the target Git repository",
-              "default": "fireworksapp-test-v2"
+              "description": "Name for the target Git repository"
             },
             "branch": {
               "type": [
@@ -309,9 +308,7 @@
                 "secretRef": {
                   "type": "object",
                   "description": "Reference details about the secret where the credentials are stored",
-                  "required": [
-                    "namespace"
-                  ],
+                  "required": [],
                   "properties": {
                     "namespace": {
                       "type": [
