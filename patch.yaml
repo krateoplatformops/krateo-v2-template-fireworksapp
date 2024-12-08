@@ -1,0 +1,44 @@
+apiVersion: krateo.io/v1alpha1
+kind: Patch
+metadata:
+  name: compositiondefinition-status-card-color-fireworksapp-fireworksapp-system
+spec:
+  deletionPolicy: Delete
+  from:
+    fieldPath: status
+    objectReference:
+      apiVersion: core.krateo.io/v1alpha1
+      kind: CompositionDefinition
+      name: fireworksapp
+      namespace: fireworksapp-system
+  to:
+    fieldPath: spec.app.template.color
+    objectReference:
+      apiVersion: templates.krateo.io/v1alpha1
+      kind: Widget
+      name: template-fireworksapp-card
+      namespace: fireworksapp-system
+    transform: ${ .conditions[] | select(.type == "Ready") | if .status == "False"
+      then "orange" elif .status == "True" then "green" else "grey" end }
+---
+apiVersion: krateo.io/v1alpha1
+kind: Patch
+metadata:
+  name: compositiondefinition-status-card-status-fireworksapp-fireworksapp-system
+spec:
+  deletionPolicy: Delete
+  from:
+    fieldPath: status
+    objectReference:
+      apiVersion: core.krateo.io/v1alpha1
+      kind: CompositionDefinition
+      name: fireworksapp
+      namespace: fireworksapp-system
+  to:
+    fieldPath: spec.app.template.status
+    objectReference:
+      apiVersion: templates.krateo.io/v1alpha1
+      kind: Widget
+      name: template-fireworksapp-card
+      namespace: fireworksapp-system
+    transform: ${ .conditions[] | select(.type == "Ready") | "Ready:" + .status }

@@ -32,13 +32,15 @@ spec:
       icon: fa-cubes
       tags: fireworksapp-system,1.1.10
       title: FireworksApp
+      status: ""
+      date: "{{DATE}}"
   propsRef:
     name: template-fireworksapp-card
     namespace: fireworksapp-system
   type: card
 ---
 apiVersion: templates.krateo.io/v1alpha1
-kind: CustomForm
+kind: Form
 metadata:
   name: template-fireworksapp-form
   namespace: fireworksapp-system

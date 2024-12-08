@@ -32,6 +32,8 @@ spec:
       icon: fa-cubes
       tags: fireworksapp-system,1.1.10
       title: FireworksApp
+      status: ""
+      date: "{{DATE}}"
   propsRef:
     name: template-fireworksapp-card
     namespace: fireworksapp-system
@@ -60,7 +62,7 @@ spec:
   actions:
     - template:
         id: submit
-        apiVersion: composition.krateo.io/v1-1-8
+        apiVersion: composition.krateo.io/v1-1-10
         verb: POST
         resource: fireworksapps
         payloadToOverride:
@@ -70,7 +72,7 @@ spec:
           value: ${ "template-fireworksapp-customform" }
   app:
     template:
-      schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-8") | .schema.openAPIV3Schema.properties.spec.properties }
+      schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-10") | .schema.openAPIV3Schema.properties.spec.properties }
       propertiesToHide: 
       - argocd
       - git.properties.fromRepo

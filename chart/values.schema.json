@@ -252,16 +252,7 @@
           "type": "object",
           "description": "Parameters section for Git repository that will be created by Krateo",
           "required": [
-            "scmUrl",
-            "org",
-            "name",
-            "branch",
-            "path",
-            "credentials",
-            "apiUrl",
-            "private",
-            "initialize",
-            "deletionPolicy"
+            "name"
           ],
           "properties": {
             "scmUrl": {
@@ -301,10 +292,7 @@
             "credentials": {
               "type": "object",
               "description": "References to the secrets that contain the credentials required to push the content the repository (in case of private ones)",
-              "required": [
-                "authMethod",
-                "secretRef"
-              ],
+              "required": [],
               "properties": {
                 "authMethod": {
                   "type": [
@@ -320,17 +308,12 @@
                 "secretRef": {
                   "type": "object",
                   "description": "Reference details about the secret where the credentials are stored",
-                  "required": [
-                    "namespace",
-                    "name",
-                    "key"
-                  ],
+                  "required": [],
                   "properties": {
                     "namespace": {
                       "type": [
                         "string"
                       ],
-                      "description": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
