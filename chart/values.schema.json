@@ -7,85 +7,85 @@
   "properties": {
     "argocd": {
       "type": "object",
-      "description": "ArgoCD parameters section",
+      "title": "ArgoCD parameters section",
       "required": [],
       "properties": {
         "namespace": {
           "type": [
             "string"
           ],
-          "description": "Namespace where ArgoCD has been installed",
+          "title": "Namespace where ArgoCD has been installed",
           "default": "krateo-system"
         },
         "application": {
           "type": "object",
-          "description": "ArgoCD application configuration section",
+          "title": "ArgoCD application configuration section",
           "required": [],
           "properties": {
             "project": {
               "type": [
                 "string"
               ],
-              "description": "ArgoCD Application project",
+              "title": "ArgoCD Application project",
               "default": "default"
             },
             "source": {
               "type": "object",
-              "description": "ArgoCD Application source parameters section",
+              "title": "ArgoCD Application source parameters section",
               "required": [],
               "properties": {
                 "path": {
                   "type": [
                     "string"
                   ],
-                  "description": "ArgoCD Application source path inside the repository created by the template",
+                  "title": "ArgoCD Application source path inside the repository created by the template",
                   "default": "chart/"
                 }
               }
             },
             "destination": {
               "type": "object",
-              "description": "ArgoCD Application destination parameters section",
+              "title": "ArgoCD Application destination parameters section",
               "required": [],
               "properties": {
                 "server": {
                   "type": [
                     "string"
                   ],
-                  "description": "ArgoCD Application target cluster",
+                  "title": "ArgoCD Application target cluster",
                   "default": "https://kubernetes.default.svc"
                 },
                 "namespace": {
                   "type": [
                     "string"
                   ],
-                  "description": "ArgoCD Application target namespace",
+                  "title": "ArgoCD Application target namespace",
                   "default": "fireworks-app"
                 }
               }
             },
             "syncPolicy": {
               "type": "object",
-              "description": "ArgoCD Application synchronization policies section",
+              "title": "ArgoCD Application synchronization policies section",
               "required": [],
               "properties": {
                 "automated": {
                   "type": "object",
-                  "description": "ArgoCD Application automated synchronization policies section",
+                  "title": "ArgoCD Application automated synchronization policies section",
                   "required": [],
                   "properties": {
                     "prune": {
                       "type": [
                         "boolean"
                       ],
-                      "description": "Prune specifies to delete resources from the cluster that are no longer tracked in git",
+                      "title": "Prune specifies to delete resources from the cluster that are no longer tracked in git",
                       "default": "true"
                     },
                     "selfHeal": {
                       "type": [
                         "boolean"
                       ],
-                      "description": "SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster",
+                      "title": "SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster",
                       "default": "true"
                     }
                   }
@@ -98,12 +98,12 @@
     },
     "app": {
       "type": "object",
-      "description": "Helm Chart parameters section",
+      "title": "Helm Chart parameters section",
       "required": [],
       "properties": {
         "service": {
           "type": "object",
-          "description": "Helm Chart service parameters section",
+          "title": "Helm Chart service parameters section",
           "required": [],
           "properties": {
             "type": {
@@ -114,14 +114,14 @@
                 "NodePort",
                 "LoadBalancer"
               ],
-              "description": "Helm Chart service type",
+              "title": "Helm Chart service type",
               "default": "NodePort"
             },
             "port": {
               "type": "integer",
               "minimum": 30000,
               "maximum": 32767,
-              "description": "Helm Chart service port",
+              "title": "Helm Chart service port",
               "default": "31180"
             }
           }
@@ -130,7 +130,7 @@
     },
     "git": {
       "type": "object",
-      "description": "Git Repository parameters section",
+      "title": "Git Repository parameters section",
       "required": [
         "toRepo"
       ],
@@ -139,7 +139,7 @@
           "type": [
             "boolean"
           ],
-          "description": "UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.",
+          "title": "UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.",
           "default": "true"
         },
         "deletionPolicy": {
@@ -150,59 +150,59 @@
             "Delete",
             "Orphan"
           ],
-          "description": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
+          "title": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
           "default": "Orphan"
         },
         "insecure": {
           "type": [
             "boolean"
           ],
-          "description": "Insecure is useful with hand made SSL certs",
+          "title": "Insecure is useful with hand made SSL certs",
           "default": "true"
         },
         "fromRepo": {
           "type": "object",
-          "description": "Parameters section for Git repository used as template for the application skeleton",
+          "title": "Parameters section for Git repository used as template for the application skeleton",
           "required": [],
           "properties": {
             "scmUrl": {
               "type": [
                 "string"
               ],
-              "description": "(schema+host e.g. https://github.com) for the target Git repository",
+              "title": "(schema+host e.g. https://github.com) for the target Git repository",
               "default": "https://github.com"
             },
             "org": {
               "type": [
                 "string"
               ],
-              "description": "Organization/group/subgroup for the target Git repository",
+              "title": "Organization/group/subgroup for the target Git repository",
               "default": "krateoplatformops"
             },
             "name": {
               "type": [
                 "string"
               ],
-              "description": "Name for the target Git repository",
+              "title": "Name for the target Git repository",
               "default": "krateo-v2-template-fireworksapp"
             },
             "branch": {
               "type": [
                 "string"
               ],
-              "description": "Branch of Git repository used as template for the application skeleton",
+              "title": "Branch of Git repository used as template for the application skeleton",
               "default": "main"
             },
             "path": {
               "type": [
                 "string"
               ],
-              "description": "Path of Git repository used as template for the application skeleton",
+              "title": "Path of Git repository used as template for the application skeleton",
               "default": "skeleton/"
             },
             "credentials": {
               "type": "object",
-              "description": "References to the secrets that contain the credentials required to clone the repository (in case of private ones)",
+              "title": "References to the secrets that contain the credentials required to clone the repository (in case of private ones)",
               "required": [],
               "properties": {
                 "authMethod": {
@@ -213,33 +213,33 @@
                     "basic",
                     "bearer"
                   ],
-                  "description": "AuthMethod defines the authentication mode. One of 'basic' or 'bearer'",
+                  "title": "AuthMethod defines the authentication mode. One of 'basic' or 'bearer'",
                   "default": "basic"
                 },
                 "secretRef": {
                   "type": "object",
-                  "description": "Reference details about the secret where the credentials are stored",
+                  "title": "Reference details about the secret where the credentials are stored",
                   "required": [],
                   "properties": {
                     "namespace": {
                       "type": [
                         "string"
                       ],
-                      "description": "Namespace of the secret where the credentials are stored",
+                      "title": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
                       "type": [
                         "string"
                       ],
-                      "description": "Name of the secret where the credentials are stored",
+                      "title": "Name of the secret where the credentials are stored",
                       "default": "github-repo-creds"
                     },
                     "key": {
                       "type": [
                         "string"
                       ],
-                      "description": "Key of the secret to use",
+                      "title": "Key of the secret to use",
                       "default": "token"
                     }
                   }
@@ -250,61 +250,50 @@
         },
         "toRepo": {
           "type": "object",
-          "description": "Parameters section for Git repository that will be created by Krateo",
+          "title": "Parameters section for Git repository that will be created by Krateo",
           "required": [
-            "scmUrl",
-            "org",
-            "name",
-            "branch",
-            "path",
-            "credentials",
-            "apiUrl",
-            "private",
-            "initialize",
-            "deletionPolicy"
+            "name"
           ],
           "properties": {
             "scmUrl": {
               "type": [
                 "string"
               ],
-              "description": "(schema+host e.g. https://github.com) for the target Git repository",
+              "title": "(schema+host e.g. https://github.com) for the target Git repository",
               "default": "https://github.com"
             },
             "org": {
               "type": [
                 "string"
               ],
-              "description": "Organization/group/subgroup for the target Git repository",
+              "title": "Organization/group/subgroup for the target Git repository",
               "default": "krateoplatformops-archive"
             },
             "name": {
               "type": [
                 "string"
               ],
-              "description": "Name for the target Git repository"
+              "title": "Name for the target Git repository",
+              "default": "fireworksapp-test-v2"
             },
             "branch": {
               "type": [
                 "string"
               ],
-              "description": "Branch for the target Git repository",
+              "title": "Branch for the target Git repository",
               "default": "main"
             },
             "path": {
               "type": [
                 "string"
               ],
-              "description": "Path where the template will be placed",
+              "title": "Path where the template will be placed",
               "default": "/"
             },
             "credentials": {
               "type": "object",
-              "description": "References to the secrets that contain the credentials required to push the content the repository (in case of private ones)",
-              "required": [
-                "authMethod",
-                "secretRef"
-              ],
+              "title": "References to the secrets that contain the credentials required to push the content the repository (in case of private ones)",
+              "required": [],
               "properties": {
                 "authMethod": {
                   "type": [
@@ -314,37 +303,34 @@
                     "basic",
                     "bearer"
                   ],
-                  "description": "AuthMethod defines the authentication mode. One of 'basic' or 'bearer'",
+                  "title": "AuthMethod defines the authentication mode. One of 'basic' or 'bearer'",
                   "default": "basic"
                 },
                 "secretRef": {
                   "type": "object",
-                  "description": "Reference details about the secret where the credentials are stored",
+                  "title": "Reference details about the secret where the credentials are stored",
                   "required": [
-                    "namespace",
-                    "name",
-                    "key"
+                    "namespace"
                   ],
                   "properties": {
                     "namespace": {
                       "type": [
                         "string"
                       ],
-                      "description": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
                       "type": [
                         "string"
                       ],
-                      "description": "Name of the secret where the credentials are stored",
+                      "title": "Name of the secret where the credentials are stored",
                       "default": "github-repo-creds"
                     },
                     "key": {
                       "type": [
                         "string"
                       ],
-                      "description": "Key of the secret to use",
+                      "title": "Key of the secret to use",
                       "default": "token"
                     }
                   }
@@ -355,21 +341,21 @@
               "type": [
                 "string"
               ],
-              "description": "URL to use for API",
+              "title": "URL to use for API",
               "default": "https://api.github.com"
             },
             "private": {
               "type": [
                 "boolean"
               ],
-              "description": "Whether the repository is private",
+              "title": "Whether the repository is private",
               "default": "false"
             },
             "initialize": {
               "type": [
                 "boolean"
               ],
-              "description": "Whether the repository must be initialized",
+              "title": "Whether the repository must be initialized",
               "default": "true"
             },
             "deletionPolicy": {
@@ -380,7 +366,7 @@
                 "Delete",
                 "Orphan"
               ],
-              "description": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
+              "title": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
               "default": "Delete"
             }
           }

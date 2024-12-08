@@ -86,43 +86,28 @@ EOF
 
 ## How to install
 
-### With *Krateo Composable Portal*
-
 ```sh
-cat <<EOL > values.yaml
-chart:
-  # when helm is in a registry
-  url: https://charts.krateo.io
-  version: 1.1.9
-  repo: fireworks-app
-
-card:
-  icon: fa-cubes
-  title: FireworksApp
-  color: blue
-  content: This is a card for FireworksApp template
-  tags: 1.1.9
-EOL
-
-helm repo add krateo https://charts.krateo.io
-helm repo update krateo
-helm install fireworksapp krateo/template -n fireworksapp-system --create-namespace -f values.yaml
+kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/heads/main/compositiondefinition.yaml
 ```
 
-### Without *Krateo Composable Portal*
+### With *Krateo Composable Portal*
+
+#### With classic form
 
 ```sh
-cat <<EOF | kubectl apply -f -
-apiVersion: core.krateo.io/v1alpha1
-kind: CompositionDefinition
-metadata:
-  name: fireworksapp
-  namespace: krateo-system
-spec:
-  chart:
-    repo: fireworks-app
-    served: true
-    url: https://charts.krateo.io
-    version: 1.1.9
-EOF
+DATE=$(date +"%Y-%m-%dT%H:%M:%SZ")
+curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/form.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply
+```
+
+#### With custom form
+
+```sh
+DATE=$(date +"%Y-%m-%dT%H:%M:%SZ")
+curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/customform.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply
+```
+
+#### Bonus: leverage patch-provider to reflect compositiondefinitionstatus in card
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/heads/main/patch.yaml
 ```
