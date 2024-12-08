@@ -108,11 +108,7 @@
           "properties": {
             "type": {
               "type": [
-                "string",
-                "boolean",
-                "number",
-                "object",
-                "array"
+                "string"
               ],
               "enum": [
                 "NodePort",
