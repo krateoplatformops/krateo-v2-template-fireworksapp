@@ -96,14 +96,14 @@ kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-t
 
 ```sh
 DATE=$(date +"%Y-%m-%dT%H:%M:%SZ")
-curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/form.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply
+curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/form.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply -f -
 ```
 
 #### With custom form
 
 ```sh
 DATE=$(date +"%Y-%m-%dT%H:%M:%SZ")
-curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/customform.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply
+curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/customform.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply -f -
 ```
 
 #### Bonus: leverage patch-provider to reflect compositiondefinitionstatus in card
