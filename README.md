@@ -87,6 +87,7 @@ EOF
 ## How to install
 
 ```sh
+kubectl create ns fireworksapp-system
 kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/heads/main/compositiondefinition.yaml
 ```
 
@@ -104,10 +105,4 @@ curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template
 ```sh
 DATE=$(date +"%Y-%m-%dT%H:%M:%SZ")
 curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/customform.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply -f -
-```
-
-#### Bonus: leverage patch-provider to reflect compositiondefinitionstatus in card
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/heads/main/patch.yaml
 ```

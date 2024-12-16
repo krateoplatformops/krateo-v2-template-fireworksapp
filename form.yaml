@@ -27,17 +27,23 @@ spec:
       verb: DELETE
   app:
     template:
-      color: blue
+      color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
       content: This is a card for FireworksApp template (classic form)
       icon: fa-cubes
       tags: fireworksapp-system,1.1.10
       title: FireworksApp
       status: ""
-      date: "{{DATE}}"
+      date: ${ .getCompositionDefinition.metadata.creationTimestamp }
   propsRef:
     name: template-fireworksapp-card
     namespace: fireworksapp-system
   type: card
+  api:
+  - name: getCompositionDefinition
+    path: "/apis/core.krateo.io/v1alpha1/namespaces/fireworksapp-system/compositiondefinitions/fireworksapp"
+    verb: GET
+    headers:
+    - 'Accept: application/json'
 ---
 apiVersion: templates.krateo.io/v1alpha1
 kind: Form
