@@ -114,6 +114,7 @@
                 "NodePort",
                 "LoadBalancer"
               ],
+              "title": "Helm Chart service type",
               "description": "Helm Chart service type",
               "default": "NodePort"
             },
