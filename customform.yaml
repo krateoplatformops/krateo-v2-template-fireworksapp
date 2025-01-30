@@ -30,7 +30,7 @@ spec:
       color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
       content: This is a card for FireworksApp template (custom form)
       icon: fa-cubes
-      tags: fireworksapp-system,1.1.10
+      tags: fireworksapp-system,1.1.11
       title: FireworksApp
       status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
       date: ${ .getCompositionDefinition.metadata.creationTimestamp }
@@ -68,7 +68,7 @@ spec:
   actions:
     - template:
         id: submit
-        apiVersion: composition.krateo.io/v1-1-10
+        apiVersion: composition.krateo.io/v1-1-11
         verb: POST
         resource: fireworksapps
         payloadToOverride:
@@ -78,7 +78,7 @@ spec:
           value: ${ "fireworksapp-system" }
   app:
     template:
-      schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-10") | .schema.openAPIV3Schema.properties.spec.properties }
+      schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-11") | .schema.openAPIV3Schema.properties.spec.properties }
       propertiesToHide: 
       - argocd
       - git.properties.fromRepo
