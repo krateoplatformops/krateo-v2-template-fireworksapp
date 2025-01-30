@@ -9,25 +9,68 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Extract and Store Trimmed Repository Name
+        run: |
+          REPO_CHART_NAME="${{ github.repository }}"
+          REPO_APP_NAME=$(echo "$REPO_CHART_NAME" | sed 's/-chart$//')  # Remove "-chart" suffix if present
+          
+          # Check if the trimmed repo exists
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/$REPO_APP_NAME")
+
+          if [[ "$HTTP_STATUS" -eq 200 ]]; then
+            echo "Using trimmed repository name: $REPO_APP_NAME"
+            echo "REPO_APP_NAME=$REPO_APP_NAME" >> $GITHUB_ENV
+          else
+            echo "Trimmed repository not found. Falling back to original repository name."
+            echo "REPO_APP_NAME=$REPO_CHART_NAME" >> $GITHUB_ENV
+          fi
+
+      - name: Use the Stored Variable
+        run: |
+          echo "Trimmed Repository Name: ${{ env.REPO_APP_NAME }}"
+
+      - name: Authenticate with GitHub App
+        id: authenticate
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Extract latest App Version
+        uses: tdemin/find-latest-tag@v1
+        id: app_version
+        with:
+          repo: https://${{ steps.authenticate.outputs.token }}@github.com/${{ github.repository }}.git
+
+      - name: Extract latest Chart Version
+        uses: tdemin/find-latest-tag@v1
+        id: chart_version
+        with:
+          repo: https://${{ steps.authenticate.outputs.token }}@github.com/${{ env.REPO_APP_NAME }}.git
+
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Extract Version
-        id: tagger
-        uses: battila7/get-version-action@v2
-
       - name: Print Version
         run: |
-          echo ${{steps.tagger.outputs.version}}
-          echo ${{steps.tagger.outputs.version-without-v}}
+          echo APP_VERSION:${{steps.app_version.outputs.tag}}
+          echo CHART_VERSION:${{steps.chart_version.outputs.tag}}
 
       - name: Replace Version in Chart.yaml
-        run: sed -i 's/CHART_VERSION/${{ steps.tagger.outputs.version-without-v }}/g' ./chart/Chart.yaml
+        run: sed -i 's/CHART_VERSION/${{ steps.chart_version.outputs.tag }}/g' ./chart/Chart.yaml
+
+      - name: Print latest App Version
+        run: echo ${{ steps.app_version.outputs.tag }}
+
+      - name: Replace App Version in Chart.yaml
+        run: sed -i 's/APP_VERSION/${{ steps.app_version.outputs.tag }}/g' ./chart/Chart.yaml
 
       - name: Publish Helm chart
         uses: stefanprodan/helm-gh-pages@master
         with:
-          token: ${{ secrets.HELM_CHARTS_BOT }}
+          token: ${{ steps.authenticate.outputs.token }}
           charts_dir: ./
           charts_url: https://charts.krateo.io
           owner: krateoplatformops
