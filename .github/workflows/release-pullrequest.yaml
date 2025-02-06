@@ -41,13 +41,13 @@ jobs:
 
       - name: Extract latest App Version
         uses: tdemin/find-latest-tag@v1
-        id: app_version
+        id: chart_version
         with:
           repo: https://${{ steps.authenticate.outputs.token }}@github.com/${{ github.repository }}.git
 
       - name: Extract latest Chart Version
         uses: tdemin/find-latest-tag@v1
-        id: chart_version
+        id: app_version
         with:
           repo: https://${{ steps.authenticate.outputs.token }}@github.com/${{ env.REPO_APP_NAME }}.git
 

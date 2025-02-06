@@ -102,7 +102,6 @@ portal:
   enabled: true
   card:
     icon: fa-cubes
-    color: blue
   overview:
     enabled: true
     text: Fireworksapp overview text
@@ -114,4 +113,5 @@ portal:
     enabled: false
   events:
     enabled: true
-  namespace: krateo-system
+  yamlviewer:
+    enabled: true
