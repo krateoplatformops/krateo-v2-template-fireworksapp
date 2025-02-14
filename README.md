@@ -96,13 +96,11 @@ kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-t
 #### With classic form
 
 ```sh
-DATE=$(date +"%Y-%m-%dT%H:%M:%SZ")
-curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/form.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply -f -
+kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/heads/main/form.yaml
 ```
 
 #### With custom form
 
 ```sh
-DATE=$(date +"%Y-%m-%dT%H:%M:%SZ")
-curl -sL "https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/main/customform.yaml" | sed "s/{{DATE}}/$DATE/" | kubectl apply -f -
+kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/heads/main/customform.yaml
 ```
