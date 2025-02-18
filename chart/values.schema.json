@@ -211,11 +211,11 @@
                     "string"
                   ],
                   "enum": [
-                    "basic",
+                    "generic",
                     "bearer"
                   ],
-                  "description": "AuthMethod defines the authentication mode. One of 'basic' or 'bearer'",
-                  "default": "basic"
+                  "description": "AuthMethod defines the authentication mode. One of 'generic' or 'bearer'",
+                  "default": "generic"
                 },
                 "secretRef": {
                   "type": "object",
