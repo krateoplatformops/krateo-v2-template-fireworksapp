@@ -33,7 +33,7 @@ spec:
       color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
       content: This is a card for FireworksApp template (classic form)
       icon: fa-cubes
-      tags: fireworksapp-system,1.1.12
+      tags: fireworksapp-system,1.1.13
       title: FireworksApp
       status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
       date: ${ .getCompositionDefinition.metadata.creationTimestamp }
