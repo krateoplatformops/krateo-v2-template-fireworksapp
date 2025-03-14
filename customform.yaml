@@ -91,7 +91,6 @@ spec:
           value: ${ "fireworksapp-system" }
   app:
     template:
-      
       schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-14") | .schema.openAPIV3Schema.properties.spec }
       propertiesToHide: 
       - argocd
