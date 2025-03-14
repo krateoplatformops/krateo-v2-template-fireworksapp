@@ -48,12 +48,23 @@ spec:
     headers:
     - 'Accept: application/json'
 ---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: template-fireworksapp-form
+  namespace: fireworksapp-system
+data:
+  redirectRoute: /compositions/${metadata.namespace}/${metadata.name}
+---
 apiVersion: templates.krateo.io/v1alpha1
 kind: Form
 metadata:
   name: template-fireworksapp-form
   namespace: fireworksapp-system
 spec:
+  propsRef:
+    name: template-fireworksapp-form
+    namespace: fireworksapp-system
   compositionDefinitionRef:
     name: fireworksapp
     namespace: fireworksapp-system

@@ -47,6 +47,14 @@ spec:
     verb: GET
     headers:
     - 'Accept: application/json'
+  - endpointRef:
+      name: snowplow-endpoint
+      namespace: krateo-system
+    headers:
+    - 'Accept: application/json'
+    name: getPricingInformation
+    path: /call?apiVersion=templates.krateo.io%2Fv1&resource=restactions&name=get-pricing-information-frontend&namespace=krateo-system
+    verb: GET
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -57,7 +65,8 @@ data:
   onSubmitId: submit
   onSubmitVerb: POST
   payloadFormKey: spec
-  redirectRoute: /compositions/${metadata.name}/${metadata.namespace}
+  redirectRoute: /compositions/${metadata.namespace}/${metadata.name}
+  redirectTimeout: "50"
 ---
 apiVersion: templates.krateo.io/v1alpha1
 kind: CustomForm
@@ -82,6 +91,7 @@ spec:
           value: ${ "fireworksapp-system" }
   app:
     template:
+      
       schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-14") | .schema.openAPIV3Schema.properties.spec }
       propertiesToHide: 
       - argocd
