@@ -115,3 +115,5 @@ portal:
     enabled: true
   yamlviewer:
     enabled: true
+  finops:
+    enabled: false
