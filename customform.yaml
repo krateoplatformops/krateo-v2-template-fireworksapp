@@ -47,14 +47,6 @@ spec:
     verb: GET
     headers:
     - 'Accept: application/json'
-  - endpointRef:
-      name: snowplow-endpoint
-      namespace: krateo-system
-    headers:
-    - 'Accept: application/json'
-    name: getPricingInformation
-    path: /call?apiVersion=templates.krateo.io%2Fv1&resource=restactions&name=get-pricing-information-frontend&namespace=krateo-system
-    verb: GET
 ---
 kind: ConfigMap
 apiVersion: v1
