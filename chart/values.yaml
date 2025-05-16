@@ -15,7 +15,7 @@ argocd:
       # @param {string} [server] ArgoCD Application target cluster
       server: https://kubernetes.default.svc
       # @param {string} [namespace] ArgoCD Application target namespace
-      namespace: fireworks-app
+      namespace: gitlab-scaffolding
     # @param {object} [syncPolicy] ArgoCD Application synchronization policies section
     syncPolicy:
       # @param {object} [automated] ArgoCD Application automated synchronization policies section
@@ -44,10 +44,6 @@ git:
   insecure: true
   # @param {object} [fromRepo] Parameters section for Git repository used as template for the application skeleton
   fromRepo:
-    # @param {string} [scmUrl] (schema+host e.g. https://github.com) for the target Git repository
-    scmUrl: https://github.com
-    # @param {string} [org] Organization/group/subgroup for the target Git repository
-    org: krateoplatformops
     # @param {string} [name] Name for the target Git repository
     name: krateo-v2-template-fireworksapp
     # @param {string} [branch] Branch of Git repository used as template for the application skeleton
@@ -61,23 +57,17 @@ git:
       # @param {object} [secretRef] Reference details about the secret where the credentials are stored
       secretRef:
         # @param {string} [namespace] Namespace of the secret where the credentials are stored
-        namespace: krateo-system
+        namespace: gitlab-system
         # @param {string} [name] Name of the secret where the credentials are stored
-        name: github-repo-creds
+        name: gitlab-repo-creds
         # @param {string} [key] Key of the secret to use
         key: token
   # @param {object} toRepo Parameters section for Git repository that will be created by Krateo
   toRepo:
-    # @param {string} [scmUrl] (schema+host e.g. https://github.com) for the target Git repository
-    scmUrl: https://github.com
-    # @param {string} [org] Organization/group/subgroup for the target Git repository
-    org: krateoplatformops-archive
     # @param {string} name Name for the target Git repository
-    name: fireworksapp-test-v2
+    name: test-diego-9
     # @param {string} [branch] Branch for the target Git repository
     branch: main
-    # @param {string} [path] Path where the template will be placed
-    path: /
     # @param {object} [credentials] References to the secrets that contain the credentials required to push the content the repository (in case of private ones)
     credentials:
       # @param {enum{generic,bearer}} [authMethod] AuthMethod defines the authentication mode. One of 'generic' or 'bearer'
@@ -85,19 +75,11 @@ git:
       # @param {object} [secretRef] Reference details about the secret where the credentials are stored
       secretRef:
         # @param {string} [namespace] Namespace of the secret where the credentials are stored
-        namespace: krateo-system
+        namespace: gitlab-system
         # @param {string} [name] Name of the secret where the credentials are stored
-        name: github-repo-creds
+        name: gitlab-repo-creds
         # @param {string} [key] Key of the secret to use
         key: token
-    # @param {string} [apiUrl] URL to use for API
-    apiUrl: https://api.github.com
-    # @param {boolean} [private] Whether the repository is private
-    private: false
-    # @param {boolean} [initialize] Whether the repository must be initialized
-    initialize: true
-    # @param {enum{Delete,Orphan}} [deletionPolicy] DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
-    deletionPolicy: Delete
 portal:
   enabled: true
   card:

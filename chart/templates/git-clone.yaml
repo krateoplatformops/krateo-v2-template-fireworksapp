@@ -1,19 +1,21 @@
 apiVersion: git.krateo.io/v1alpha1
 kind: Repo
 metadata:
-  name: {{ include "fireworks-app.fullname" . }}-repo
+  name: {{ include "gitlab-scaffolding.fullname" . }}-repo
   labels:
-    {{- include "fireworks-app.labels" . | nindent 4 }}
+    {{- include "gitlab-scaffolding.labels" . | nindent 4 }}
+  annotations:
+    krateo.io/connector-verbose: "true"
 spec:
   unsupportedCapabilities: {{ .Values.git.unsupportedCapabilities }}
   insecure: {{ .Values.git.insecure }}
   deletionPolicy: {{ .Values.git.deletionPolicy }}
   configMapKeyRef:
     namespace: {{ .Release.Namespace }}
-    name: {{ include "fireworks-app.fullname" . }}-replace-values
+    name: {{ include "gitlab-scaffolding.fullname" . }}-replace-values
     key: values
   fromRepo:
-    url: {{ include "fireworks-app.fromRepoUrl" . }}
+    url: https://gitlab.com/ldepandis/{{ .Values.git.fromRepo.name }}
     branch: {{ .Values.git.fromRepo.branch }}
     authMethod: {{ .Values.git.fromRepo.credentials.authMethod }}
     path: {{ .Values.git.fromRepo.path }}
@@ -22,10 +24,9 @@ spec:
       name: {{ .Values.git.fromRepo.credentials.secretRef.name }}
       key: {{ .Values.git.fromRepo.credentials.secretRef.key }}
   toRepo:
-    url: {{ include "fireworks-app.toRepoUrl" . }}
+    url: https://gitlab.com/ldepandis/{{ .Values.git.toRepo.name }}
     branch: {{ .Values.git.toRepo.branch }}
     authMethod: {{ .Values.git.toRepo.credentials.authMethod }}
-    path: {{ .Values.git.toRepo.path }}
     secretRef:
       namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
       name: {{ .Values.git.toRepo.credentials.secretRef.name }}

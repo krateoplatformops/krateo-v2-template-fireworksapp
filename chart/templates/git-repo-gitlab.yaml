@@ -1,0 +1,23 @@
+apiVersion: gitlab.com/v1alpha1
+kind: Repo
+metadata:
+  annotations:
+    krateo.io/connector-verbose: "true"
+  name: {{ include "gitlab-scaffolding.fullname" . }}-repo
+spec:
+  authenticationRefs:
+    bearerAuthRef: {{ include "gitlab-scaffolding.fullname" . }}
+  # id: matteogastaldello1/Prova1
+  name: {{ .Values.git.toRepo.name }}
+  visibility: public
+  initialize_with_readme: true
+---
+kind: BearerAuth
+apiVersion: gitlab.com/v1alpha1
+metadata:
+  name: {{ include "gitlab-scaffolding.fullname" . }}
+spec:
+  tokenRef:
+    name: {{ .Values.git.toRepo.credentials.secretRef.name }}
+    namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
+    key: {{ .Values.git.toRepo.credentials.secretRef.key }}

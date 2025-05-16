@@ -4,12 +4,11 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.argocd.namespace | default "argocd" }}
   labels:
-    {{- include "fireworks-app.labels" . | nindent 4 }}
+    {{- include "gitlab-scaffolding.labels" . | nindent 4 }}
 spec:
   project: {{ .Values.argocd.application.project | default "default" }}
   source:
-    repoURL: {{ include "fireworks-app.toRepoUrl" . }}
-    targetRevision: {{ .Values.git.toRepo.branch }}
+    repoURL: https://gitlab.com/ldepandis/{{ .Values.git.toRepo.name }}
     path: {{ .Values.argocd.application.source.path }}
   destination:
     server: {{ .Values.argocd.application.destination.server }}

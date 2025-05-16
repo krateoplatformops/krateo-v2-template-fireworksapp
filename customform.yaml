@@ -6,44 +6,44 @@ data:
   drawerSize: large
 kind: ConfigMap
 metadata:
-  name: template-fireworksapp-card
-  namespace: fireworksapp-system
+  name: template-gitlab-scaffolding-card
+  namespace: gitlab-scaffolding-system
 ---
 apiVersion: templates.krateo.io/v1alpha1
 kind: Widget
 metadata:
-  name: template-fireworksapp-card
-  namespace: fireworksapp-system
+  name: template-gitlab-scaffolding-card
+  namespace: gitlab-scaffolding-system
 spec:
   actions:
   - template:
       apiVersion: templates.krateo.io/v1alpha1
-      name: template-fireworksapp-customform
-      namespace: fireworksapp-system
+      name: template-gitlab-scaffolding-customform
+      namespace: gitlab-scaffolding-system
       resource: customforms
       verb: GET
   - template:
       apiVersion: core.krateo.io/v1alpha1
-      name: fireworksapp
-      namespace: fireworksapp-system
+      name: gitlab-scaffolding
+      namespace: gitlab-scaffolding-system
       resource: compositiondefinitions
       verb: DELETE
   app:
     template:
       color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
-      content: This is a card for FireworksApp template (custom form)
+      content: This is a card for gitlab-scaffolding template (custom form)
       icon: fa-cubes
-      tags: fireworksapp-system,1.1.15
-      title: FireworksApp
+      tags: gitlab-scaffolding-system,1.1.15
+      title: gitlab-scaffolding
       status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
       date: ${ .getCompositionDefinition.metadata.creationTimestamp }
   propsRef:
-    name: template-fireworksapp-card
-    namespace: fireworksapp-system
+    name: template-gitlab-scaffolding-card
+    namespace: gitlab-scaffolding-system
   type: card
   api:
   - name: getCompositionDefinition
-    path: "/apis/core.krateo.io/v1alpha1/namespaces/fireworksapp-system/compositiondefinitions/fireworksapp"
+    path: "/apis/core.krateo.io/v1alpha1/namespaces/gitlab-system/compositiondefinitions/gitlab-scaffolding"
     verb: GET
     headers:
     - 'Accept: application/json'
@@ -51,8 +51,8 @@ spec:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: template-fireworksapp-customform
-  namespace: fireworksapp-system
+  name: template-gitlab-scaffolding-customform
+  namespace: gitlab-scaffolding-system
 data:
   onSubmitId: submit
   onSubmitVerb: POST
@@ -63,34 +63,34 @@ data:
 apiVersion: templates.krateo.io/v1alpha1
 kind: CustomForm
 metadata:
-  name: template-fireworksapp-customform
-  namespace: fireworksapp-system
+  name: template-gitlab-scaffolding-customform
+  namespace: gitlab-scaffolding-system
 spec:
   type: customform
   propsRef:
-    name: template-fireworksapp-customform
-    namespace: fireworksapp-system
+    name: template-gitlab-scaffolding-customform
+    namespace: gitlab-scaffolding-system
   actions:
     - template:
         id: submit
-        apiVersion: composition.krateo.io/v1-1-15
+        apiVersion: composition.krateo.io/v0-1-0
         verb: POST
-        resource: fireworksapps
+        resource: gitlabscaffoldings
         payloadToOverride:
         - name: metadata.name
           value: ${ git.toRepo.name }
         - name: metadata.namespace
-          value: ${ "fireworksapp-system" }
+          value: ${ "gitlab-scaffolding-system" }
   app:
     template:
-      schema: ${ .getCRD | .spec.versions[] | select(.name == "v1-1-15") | .schema.openAPIV3Schema.properties.spec }
+      schema: ${ .getCRD | .spec.versions[] | select(.name == "v0-1-0") | .schema.openAPIV3Schema.properties.spec }
       propertiesToHide: 
       - argocd
       - git.properties.fromRepo
       - app
   api:
   - name: getCRD
-    path: "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/fireworksapps.composition.krateo.io"
+    path: "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/gitlabscaffoldings.composition.krateo.io"
     verb: GET
     headers:
     - 'Accept: application/json'

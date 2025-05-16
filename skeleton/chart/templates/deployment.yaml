@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "fireworks-app.fullname" . }}
+  name: {{ include "gitlab-scaffolding.fullname" . }}
   labels:
-    {{- include "fireworks-app.labels" . | nindent 4 }}
+    {{- include "gitlab-scaffolding.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "fireworks-app.selectorLabels" . | nindent 6 }}
+      {{- include "gitlab-scaffolding.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "fireworks-app.selectorLabels" . | nindent 8 }}
+        {{- include "gitlab-scaffolding.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "fireworks-app.serviceAccountName" . }}
+      serviceAccountName: {{ include "gitlab-scaffolding.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

@@ -60,7 +60,7 @@
                     "string"
                   ],
                   "description": "ArgoCD Application target namespace",
-                  "default": "fireworks-app"
+                  "default": "gitlab-scaffolding"
                 }
               }
             },
@@ -166,20 +166,6 @@
           "description": "Parameters section for Git repository used as template for the application skeleton",
           "required": [],
           "properties": {
-            "scmUrl": {
-              "type": [
-                "string"
-              ],
-              "description": "(schema+host e.g. https://github.com) for the target Git repository",
-              "default": "https://github.com"
-            },
-            "org": {
-              "type": [
-                "string"
-              ],
-              "description": "Organization/group/subgroup for the target Git repository",
-              "default": "krateoplatformops"
-            },
             "name": {
               "type": [
                 "string"
@@ -256,20 +242,6 @@
             "name"
           ],
           "properties": {
-            "scmUrl": {
-              "type": [
-                "string"
-              ],
-              "description": "(schema+host e.g. https://github.com) for the target Git repository",
-              "default": "https://github.com"
-            },
-            "org": {
-              "type": [
-                "string"
-              ],
-              "description": "Organization/group/subgroup for the target Git repository",
-              "default": "krateoplatformops-archive"
-            },
             "name": {
               "type": [
                 "string"
@@ -282,13 +254,6 @@
               ],
               "description": "Branch for the target Git repository",
               "default": "main"
-            },
-            "path": {
-              "type": [
-                "string"
-              ],
-              "description": "Path where the template will be placed",
-              "default": "/"
             },
             "credentials": {
               "type": "object",
@@ -334,27 +299,6 @@
                   }
                 }
               }
-            },
-            "apiUrl": {
-              "type": [
-                "string"
-              ],
-              "description": "URL to use for API",
-              "default": "https://api.github.com"
-            },
-            "private": {
-              "type": [
-                "boolean"
-              ],
-              "description": "Whether the repository is private",
-              "default": "false"
-            },
-            "initialize": {
-              "type": [
-                "boolean"
-              ],
-              "description": "Whether the repository must be initialized",
-              "default": "true"
             },
             "deletionPolicy": {
               "type": [

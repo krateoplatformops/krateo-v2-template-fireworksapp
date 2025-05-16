@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "fireworks-app.name" -}}
+{{- define "gitlab-scaffolding.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "fireworks-app.fullname" -}}
+{{- define "gitlab-scaffolding.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "fireworks-app.chart" -}}
+{{- define "gitlab-scaffolding.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "fireworks-app.labels" -}}
-helm.sh/chart: {{ include "fireworks-app.chart" . }}
-{{ include "fireworks-app.selectorLabels" . }}
+{{- define "gitlab-scaffolding.labels" -}}
+helm.sh/chart: {{ include "gitlab-scaffolding.chart" . }}
+{{ include "gitlab-scaffolding.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "fireworks-app.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "fireworks-app.name" . }}
+{{- define "gitlab-scaffolding.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "gitlab-scaffolding.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "fireworks-app.serviceAccountName" -}}
+{{- define "gitlab-scaffolding.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "fireworks-app.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "gitlab-scaffolding.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
