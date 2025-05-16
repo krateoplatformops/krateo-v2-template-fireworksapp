@@ -7,25 +7,25 @@ data:
 kind: ConfigMap
 metadata:
   name: template-gitlab-scaffolding-card
-  namespace: gitlab-scaffolding-system
+  namespace: gitlab-system
 ---
 apiVersion: templates.krateo.io/v1alpha1
 kind: Widget
 metadata:
   name: template-gitlab-scaffolding-card
-  namespace: gitlab-scaffolding-system
+  namespace: gitlab-system
 spec:
   actions:
   - template:
       apiVersion: templates.krateo.io/v1alpha1
       name: template-gitlab-scaffolding-customform
-      namespace: gitlab-scaffolding-system
+      namespace: gitlab-system
       resource: customforms
       verb: GET
   - template:
       apiVersion: core.krateo.io/v1alpha1
       name: gitlab-scaffolding
-      namespace: gitlab-scaffolding-system
+      namespace: gitlab-system
       resource: compositiondefinitions
       verb: DELETE
   app:
@@ -33,13 +33,13 @@ spec:
       color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
       content: This is a card for gitlab-scaffolding template (custom form)
       icon: fa-cubes
-      tags: gitlab-scaffolding-system,1.1.15
+      tags: gitlab-system,1.1.15
       title: gitlab-scaffolding
       status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
       date: ${ .getCompositionDefinition.metadata.creationTimestamp }
   propsRef:
     name: template-gitlab-scaffolding-card
-    namespace: gitlab-scaffolding-system
+    namespace: gitlab-system
   type: card
   api:
   - name: getCompositionDefinition
@@ -52,7 +52,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: template-gitlab-scaffolding-customform
-  namespace: gitlab-scaffolding-system
+  namespace: gitlab-system
 data:
   onSubmitId: submit
   onSubmitVerb: POST
@@ -64,12 +64,12 @@ apiVersion: templates.krateo.io/v1alpha1
 kind: CustomForm
 metadata:
   name: template-gitlab-scaffolding-customform
-  namespace: gitlab-scaffolding-system
+  namespace: gitlab-system
 spec:
   type: customform
   propsRef:
     name: template-gitlab-scaffolding-customform
-    namespace: gitlab-scaffolding-system
+    namespace: gitlab-system
   actions:
     - template:
         id: submit
@@ -80,7 +80,7 @@ spec:
         - name: metadata.name
           value: ${ git.toRepo.name }
         - name: metadata.namespace
-          value: ${ "gitlab-scaffolding-system" }
+          value: ${ "gitlab-system" }
   app:
     template:
       schema: ${ .getCRD | .spec.versions[] | select(.name == "v0-1-0") | .schema.openAPIV3Schema.properties.spec }

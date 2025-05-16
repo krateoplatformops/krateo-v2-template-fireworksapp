@@ -213,14 +213,14 @@
                         "string"
                       ],
                       "description": "Namespace of the secret where the credentials are stored",
-                      "default": "krateo-system"
+                      "default": "gitlab-system"
                     },
                     "name": {
                       "type": [
                         "string"
                       ],
                       "description": "Name of the secret where the credentials are stored",
-                      "default": "github-repo-creds"
+                      "default": "gitlab-repo-creds"
                     },
                     "key": {
                       "type": [
@@ -280,14 +280,14 @@
                       "type": [
                         "string"
                       ],
-                      "default": "krateo-system"
+                      "default": "gitlab-system"
                     },
                     "name": {
                       "type": [
                         "string"
                       ],
                       "description": "Name of the secret where the credentials are stored",
-                      "default": "github-repo-creds"
+                      "default": "gitlab-repo-creds"
                     },
                     "key": {
                       "type": [
