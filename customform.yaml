@@ -33,7 +33,7 @@ spec:
       color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
       content: This is a card for gitlab-scaffolding template (custom form)
       icon: fa-cubes
-      tags: gitlab-system,1.1.15
+      tags: gitlab-system,0.1.0
       title: gitlab-scaffolding
       status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
       date: ${ .getCompositionDefinition.metadata.creationTimestamp }
