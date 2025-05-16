@@ -1,0 +1,21 @@
+stages:
+  - build
+
+variables:
+  DOCKER_DRIVER: overlay2
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+  IMAGE_NAME: $CI_REGISTRY_IMAGE:$IMAGE_TAG
+
+build:
+  stage: build
+  image: docker:24.0.2
+  services:
+    - docker:24.0.2-dind
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - apk add --no-cache git
+    - echo "$CI_JOB_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  script:
+    - docker build -t $IMAGE_NAME -f app/Dockerfile app/
+    - docker push $IMAGE_NAME
