@@ -315,6 +315,7 @@
                       "type": [
                         "string"
                       ],
+                      "description": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
@@ -366,6 +367,13 @@
               ],
               "description": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"Delete\" or \"Orphan\" the external resource.",
               "default": "Delete"
+            },
+            "verbose": {
+              "type": [
+                "boolean"
+              ],
+              "description": "Whether to enable verbose logging for Repo controller",
+              "default": "false"
             }
           }
         }
