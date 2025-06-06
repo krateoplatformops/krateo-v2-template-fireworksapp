@@ -19,7 +19,7 @@ This Template implements the following steps:
 ```sh
 helm repo add krateo https://charts.krateo.io
 helm repo update krateo
-helm install github-provider krateo/github-provider --namespace krateo-system --create-namespace
+helm install github-provider-kog-chart krateo/github-provider-kog-chart --namespace krateo-system --create-namespace
 helm install git-provider krateo/git-provider --namespace krateo-system --create-namespace
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update argo
@@ -84,10 +84,38 @@ type: Opaque
 EOF
 ```
 
-## How to install
+### Check if github-provider is ready
+
+```sh
+TODO
+```
+
+### Create a *fireworksapp-system* namespace
 
 ```sh
 kubectl create ns fireworksapp-system
+```
+
+### Create a BearerAuth Custom Resource
+
+```sh
+cat <<EOF | kubectl apply -f -
+apiVersion: github.krateo.io/v1alpha1
+kind: BearerAuth
+metadata:
+  name: bearer-github-ref
+  namespace: fireworksapp-system
+spec:
+  tokenRef:
+    key: token
+    name: github-repo-creds
+    namespace: krateo-system
+EOF
+```
+
+## How to install
+
+```sh
 kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/heads/main/compositiondefinition.yaml
 ```
 
