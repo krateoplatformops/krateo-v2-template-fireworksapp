@@ -19,7 +19,7 @@ This Template implements the following steps:
 ```sh
 helm repo add krateo https://charts.krateo.io
 helm repo update krateo
-helm install github-provider-kog-chart krateo/github-provider-kog-chart --namespace krateo-system --create-namespace
+helm install github-provider krateo/github-provider-kog-chart --namespace krateo-system --create-namespace
 helm install git-provider krateo/git-provider --namespace krateo-system --create-namespace
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update argo
@@ -84,10 +84,15 @@ type: Opaque
 EOF
 ```
 
-### Check if github-provider is ready
+### Wait for GitHub Provider to be ready
 
 ```sh
-TODO
+until kubectl get deployment github-provider-repo-controller -n krateo-system &>/dev/null; do
+  echo "Waiting for Repo controller deployment to be created..."
+  sleep 5
+done
+kubectl wait deployments github-provider-repo-controller --for condition=Available=True --namespace krateo-system --timeout=300s
+
 ```
 
 ### Create a *fireworksapp-system* namespace
@@ -97,6 +102,8 @@ kubectl create ns fireworksapp-system
 ```
 
 ### Create a BearerAuth Custom Resource
+
+Create a BearerAuth Custom Resource to make the GitHub Provider able to authenticate with the GitHub API using the previously created token.
 
 ```sh
 cat <<EOF | kubectl apply -f -
