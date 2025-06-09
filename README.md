@@ -19,7 +19,7 @@ This Template implements the following steps:
 ```sh
 helm repo add krateo https://charts.krateo.io
 helm repo update krateo
-helm install github-provider krateo/github-provider-kog-chart --namespace krateo-system --create-namespace
+helm install github-provider krateo/github-provider-kog --namespace krateo-system --create-namespace
 helm install git-provider krateo/git-provider --namespace krateo-system --create-namespace
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update argo
