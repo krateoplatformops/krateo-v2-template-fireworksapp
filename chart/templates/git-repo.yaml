@@ -4,16 +4,13 @@ metadata:
   name: {{ include "fireworks-app.fullname" . }}-repo
   labels:
     {{- include "fireworks-app.labels" . | nindent 4 }}
+  annotations:
+    krateo.io/connector-verbose: {{ .Values.git.toRepo.verbose }}
+    krateo.io/deletion-policy: {{ .Values.git.toRepo.deletionPolicy }}
 spec:
-  apiUrl: {{ .Values.git.toRepo.apiUrl }}
-  verbose: {{ .Values.git.toRepo.verbose }}
-  credentials:
-    secretRef:
-      namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
-      name: {{ .Values.git.toRepo.credentials.secretRef.name }}
-      key: {{ .Values.git.toRepo.credentials.secretRef.key }}
+  authenticationRefs:
+    bearerAuthRef: bearer-github-ref
   org: {{ .Values.git.toRepo.org }}
   name: {{ .Values.git.toRepo.name }}
-  deletionPolicy: {{ .Values.git.toRepo.deletionPolicy | default "Delete" }}
   private: {{ .Values.git.toRepo.private }}
-  initialize: {{ .Values.git.toRepo.initialize }}
+  auto_init: {{ .Values.git.toRepo.initialize }}
