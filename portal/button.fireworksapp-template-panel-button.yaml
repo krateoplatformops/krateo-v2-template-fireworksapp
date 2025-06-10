@@ -1,0 +1,24 @@
+kind: Button
+apiVersion: widgets.templates.krateo.io/v1beta1
+metadata:
+  name: fireworksapp-template-panel-button
+  namespace: fireworksapp-system
+spec:
+  widgetData:
+    icon: fa-trash
+    type: default
+    shape: circle
+    clickActionId: cleanup
+  actions:
+    rest:
+      - id: cleanup
+        resourceRefId: cleanup
+        type: rest
+        onSuccessNavigateTo: /templates
+  resourcesRefs:
+    - id: cleanup
+      apiVersion: templates.krateo.io/v1
+      resource: restactions
+      name: fireworksapp-template-restaction-cleanup
+      namespace: fireworksapp-system
+      verb: GET
