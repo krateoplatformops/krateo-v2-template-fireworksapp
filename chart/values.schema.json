@@ -11,9 +11,7 @@
       "required": [],
       "properties": {
         "namespace": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "description": "Namespace where ArgoCD has been installed",
           "default": "krateo-system"
         },
@@ -23,9 +21,7 @@
           "required": [],
           "properties": {
             "project": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "ArgoCD Application project",
               "default": "default"
             },
@@ -35,9 +31,7 @@
               "required": [],
               "properties": {
                 "path": {
-                  "type": [
-                    "string"
-                  ],
+                  "type": "string",
                   "description": "ArgoCD Application source path inside the repository created by the template",
                   "default": "chart/"
                 }
@@ -49,16 +43,12 @@
               "required": [],
               "properties": {
                 "server": {
-                  "type": [
-                    "string"
-                  ],
+                  "type": "string",
                   "description": "ArgoCD Application target cluster",
                   "default": "https://kubernetes.default.svc"
                 },
                 "namespace": {
-                  "type": [
-                    "string"
-                  ],
+                  "type": "string",
                   "description": "ArgoCD Application target namespace",
                   "default": "fireworks-app"
                 }
@@ -75,16 +65,12 @@
                   "required": [],
                   "properties": {
                     "prune": {
-                      "type": [
-                        "boolean"
-                      ],
+                      "type": "boolean",
                       "description": "Prune specifies to delete resources from the cluster that are no longer tracked in git",
                       "default": "true"
                     },
                     "selfHeal": {
-                      "type": [
-                        "boolean"
-                      ],
+                      "type": "boolean",
                       "description": "SelfHeal specifies whether to revert resources back to their desired state upon modification in the cluster",
                       "default": "true"
                     }
@@ -107,9 +93,7 @@
           "required": [],
           "properties": {
             "type": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "enum": [
                 "NodePort",
                 "LoadBalancer"
@@ -137,16 +121,12 @@
       ],
       "properties": {
         "unsupportedCapabilities": {
-          "type": [
-            "boolean"
-          ],
+          "type": "boolean",
           "description": "UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.",
           "default": "true"
         },
         "deletionPolicy": {
-          "type": [
-            "string"
-          ],
+          "type": "string",
           "enum": [
             "Delete",
             "Orphan"
@@ -155,9 +135,7 @@
           "default": "Orphan"
         },
         "insecure": {
-          "type": [
-            "boolean"
-          ],
+          "type": "boolean",
           "description": "Insecure is useful with hand made SSL certs",
           "default": "true"
         },
@@ -167,37 +145,27 @@
           "required": [],
           "properties": {
             "scmUrl": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "(schema+host e.g. https://github.com) for the target Git repository",
               "default": "https://github.com"
             },
             "org": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Organization/group/subgroup for the target Git repository",
               "default": "krateoplatformops"
             },
             "name": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Name for the target Git repository",
               "default": "krateo-v2-template-fireworksapp"
             },
             "branch": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Branch of Git repository used as template for the application skeleton",
               "default": "main"
             },
             "path": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Path of Git repository used as template for the application skeleton",
               "default": "skeleton/"
             },
@@ -207,9 +175,7 @@
               "required": [],
               "properties": {
                 "authMethod": {
-                  "type": [
-                    "string"
-                  ],
+                  "type": "string",
                   "enum": [
                     "generic",
                     "bearer"
@@ -223,23 +189,17 @@
                   "required": [],
                   "properties": {
                     "namespace": {
-                      "type": [
-                        "string"
-                      ],
+                      "type": "string",
                       "description": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
-                      "type": [
-                        "string"
-                      ],
+                      "type": "string",
                       "description": "Name of the secret where the credentials are stored",
                       "default": "github-repo-creds"
                     },
                     "key": {
-                      "type": [
-                        "string"
-                      ],
+                      "type": "string",
                       "description": "Key of the secret to use",
                       "default": "token"
                     }
@@ -257,36 +217,26 @@
           ],
           "properties": {
             "scmUrl": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "(schema+host e.g. https://github.com) for the target Git repository",
               "default": "https://github.com"
             },
             "org": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Organization/group/subgroup for the target Git repository",
               "default": "krateoplatformops-archive"
             },
             "name": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Name for the target Git repository"
             },
             "branch": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Branch for the target Git repository",
               "default": "main"
             },
             "path": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "Path where the template will be placed",
               "default": "/"
             },
@@ -296,9 +246,7 @@
               "required": [],
               "properties": {
                 "authMethod": {
-                  "type": [
-                    "string"
-                  ],
+                  "type": "string",
                   "enum": [
                     "generic",
                     "bearer"
@@ -312,23 +260,17 @@
                   "required": [],
                   "properties": {
                     "namespace": {
-                      "type": [
-                        "string"
-                      ],
+                      "type": "string",
                       "description": "Namespace of the secret where the credentials are stored",
                       "default": "krateo-system"
                     },
                     "name": {
-                      "type": [
-                        "string"
-                      ],
+                      "type": "string",
                       "description": "Name of the secret where the credentials are stored",
                       "default": "github-repo-creds"
                     },
                     "key": {
-                      "type": [
-                        "string"
-                      ],
+                      "type": "string",
                       "description": "Key of the secret to use",
                       "default": "token"
                     }
@@ -337,30 +279,22 @@
               }
             },
             "apiUrl": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "description": "URL to use for API",
               "default": "https://api.github.com"
             },
             "private": {
-              "type": [
-                "boolean"
-              ],
+              "type": "boolean",
               "description": "Whether the repository is private",
               "default": "false"
             },
             "initialize": {
-              "type": [
-                "boolean"
-              ],
+              "type": "boolean",
               "description": "Whether the repository must be initialized",
               "default": "true"
             },
             "deletionPolicy": {
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "enum": [
                 "delete",
                 "orphan"
@@ -369,9 +303,7 @@
               "default": "delete"
             },
             "verbose": {
-              "type": [
-                "boolean"
-              ],
+              "type": "boolean",
               "description": "Whether to enable verbose logging for Repo controller",
               "default": "false"
             }
