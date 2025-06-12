@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "fireworks-app.fullname" . }}-replace-values
+  name: {{ .Release.Name }}-replace-values
   labels:
     {{- include "fireworks-app.labels" . | nindent 4 }}
 data:
