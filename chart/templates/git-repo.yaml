@@ -1,7 +1,7 @@
 apiVersion: github.krateo.io/v1alpha1
 kind: Repo
 metadata:
-  name: {{ include "fireworks-app.fullname" . }}-repo
+  name: {{ .Release.Name }}-repo
   labels:
     {{- include "fireworks-app.labels" . | nindent 4 }}
   annotations:
