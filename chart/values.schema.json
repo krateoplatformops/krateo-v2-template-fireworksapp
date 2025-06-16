@@ -300,7 +300,7 @@
                 "Orphan"
               ],
               "description": "DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either \"delete\" or \"orphan\" the external resource.",
-              "default": "delete"
+              "default": "Delete"
             },
             "verbose": {
               "type": "boolean",
