@@ -6,7 +6,7 @@ metadata:
     {{- include "fireworks-app.labels" . | nindent 4 }}
   annotations:
     krateo.io/connector-verbose: "{{ .Values.git.toRepo.verbose }}"
-    krateo.io/deletion-policy: {{ .Values.git.toRepo.deletionPolicy }}
+    krateo.io/deletion-policy: {{ .Values.git.toRepo.deletionPolicy | lower }}
 spec:
   authenticationRefs:
     bearerAuthRef: bearer-github-ref
