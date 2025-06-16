@@ -107,7 +107,7 @@ Create a BearerAuth Custom Resource to make the GitHub Provider able to authenti
 
 ```sh
 cat <<EOF | kubectl apply -f -
-apiVersion: github.krateo.io/v1alpha1
+apiVersion: github.kog.krateo.io/v1alpha1
 kind: BearerAuth
 metadata:
   name: bearer-github-ref
