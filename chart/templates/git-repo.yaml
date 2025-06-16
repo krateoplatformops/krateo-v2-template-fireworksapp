@@ -1,4 +1,4 @@
-apiVersion: github.krateo.io/v1alpha1
+apiVersion: github.kog.krateo.io/v1alpha1
 kind: Repo
 metadata:
   name: {{ .Release.Name }}-repo
