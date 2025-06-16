@@ -20,5 +20,5 @@ version: CHART_VERSION
 dependencies:
 - name: composition-portal-starter
   condition: portal.enabled
-  version: "0.1.5"
+  version: "0.1.6"
   repository: "https://charts.krateo.io"
