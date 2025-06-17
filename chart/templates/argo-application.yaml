@@ -8,7 +8,7 @@ metadata:
 spec:
   project: {{ .Values.argocd.application.project | default "default" }}
   source:
-    repoURL: https://gitlab.com/ldepandis/{{ .Values.git.toRepo.name }}.git
+    repoURL: https://gitlab.com/diegobraga-krateo/{{ .Values.git.toRepo.name }}.git
     path: {{ .Values.argocd.application.source.path }}
   destination:
     server: {{ .Values.argocd.application.destination.server }}
