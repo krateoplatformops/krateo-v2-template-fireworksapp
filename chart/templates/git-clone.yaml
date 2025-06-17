@@ -15,7 +15,7 @@ spec:
     name: {{ include "gitlab-scaffolding.fullname" . }}-replace-values
     key: values
   fromRepo:
-    url: https://gitlab.com/ldepandis/{{ .Values.git.fromRepo.name }}
+    url: https://gitlab.com/diegobraga-krateo/{{ .Values.git.fromRepo.name }}
     branch: {{ .Values.git.fromRepo.branch }}
     authMethod: {{ .Values.git.fromRepo.credentials.authMethod }}
     path: {{ .Values.git.fromRepo.path }}
@@ -24,7 +24,7 @@ spec:
       name: {{ .Values.git.fromRepo.credentials.secretRef.name }}
       key: {{ .Values.git.fromRepo.credentials.secretRef.key }}
   toRepo:
-    url: https://gitlab.com/ldepandis/{{ .Values.git.toRepo.name }}
+    url: https://gitlab.com/diegobraga-krateo/{{ .Values.git.toRepo.name }}
     branch: {{ .Values.git.toRepo.branch }}
     authMethod: {{ .Values.git.toRepo.credentials.authMethod }}
     secretRef:
