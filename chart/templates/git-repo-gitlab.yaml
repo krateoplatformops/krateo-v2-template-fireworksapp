@@ -1,4 +1,4 @@
-apiVersion: gitlab.com/v1alpha1
+apiVersion: gitlab.kog.krateo.io/v1alpha1
 kind: Repo
 metadata:
   annotations:
@@ -13,7 +13,7 @@ spec:
   initialize_with_readme: true
 ---
 kind: BearerAuth
-apiVersion: gitlab.com/v1alpha1
+apiVersion: gitlab.kog.krateo.io/v1alpha1
 metadata:
   name: {{ include "gitlab-scaffolding.fullname" . }}
 spec:
