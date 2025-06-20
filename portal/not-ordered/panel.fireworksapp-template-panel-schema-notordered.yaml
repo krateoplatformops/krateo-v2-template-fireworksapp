@@ -1,0 +1,59 @@
+kind: Panel
+apiVersion: widgets.templates.krateo.io/v1beta1
+metadata:
+  name: fireworksapp-template-panel-schema-notordered
+  namespace: fireworksapp-system
+  labels:
+    krateo.io/portal-page: templates
+spec:
+  apiRef:
+    name: fireworksapp-compositiondefinition
+    namespace: fireworksapp-system
+  widgetData:
+    clickActionId: template-click-action
+    headerLeft: Ready:Unknown
+    footer:
+      items:
+        - resourceRefId: template-panel-button
+      tags:
+        - fireworksapp-system
+        - 2.0.1
+    icon:
+      name: fa-solid fa-cubes
+      color: blue
+    items:
+      - resourceRefId: template-panel-paragraph
+    title: FireworksApp (Not Ordered Schema)
+  actions:
+    openDrawer:
+      - id: template-click-action
+        resourceRefId: template-form
+        type: openDrawer
+        size: large
+        title: Fireworksapp
+  widgetDataTemplate:
+    - forPath: icon.color
+      expression: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
+    - forPath: headerLeft
+      expression: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "Ready:False" elif .status == "True" then "Ready:True" end }
+    - forPath: headerRight
+      expression: ${ .getCompositionDefinition.metadata.creationTimestamp }
+  resourcesRefs:
+    - id: template-panel-paragraph
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: fireworksapp-template-panel-paragraph-schema-notordered
+      namespace: fireworksapp-system
+      resource: paragraphs
+      verb: GET
+    - id: template-panel-button
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: fireworksapp-template-panel-button-schema-notordered
+      namespace: fireworksapp-system
+      resource: buttons
+      verb: GET
+    - id: template-form
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: fireworksapp-form-notordered
+      namespace: fireworksapp-system
+      resource: forms
+      verb: GET

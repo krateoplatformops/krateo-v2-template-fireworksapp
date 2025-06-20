@@ -1,7 +1,7 @@
 kind: Button
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
-  name: fireworksapp-template-panel-button
+  name: fireworksapp-template-panel-button-schema-notordered
   namespace: fireworksapp-system
 spec:
   widgetData:
@@ -19,6 +19,6 @@ spec:
     - id: cleanup
       apiVersion: templates.krateo.io/v1
       resource: restactions
-      name: fireworksapp-template-restaction-cleanup
+      name: fireworksapp-template-restaction-cleanup-schema-notordered
       namespace: fireworksapp-system
       verb: GET

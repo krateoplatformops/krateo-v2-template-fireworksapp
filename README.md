@@ -178,11 +178,11 @@ This Template implements the following steps:
   ### Wait for GitHub Provider to be ready
 
   ```sh
-  until kubectl get deployment github-provider-repo-controller -n krateo-system &>/dev/null; do
+  until kubectl get deployment github-provider-kog-repo-controller -n krateo-system &>/dev/null; do
     echo "Waiting for Repo controller deployment to be created..."
     sleep 5
   done
-  kubectl wait deployments github-provider-repo-controller --for condition=Available=True --namespace krateo-system --timeout=300s
+  kubectl wait deployments github-provider-kog-repo-controller --for condition=Available=True --namespace krateo-system --timeout=300s
 
   ```
 
@@ -214,7 +214,7 @@ This Template implements the following steps:
   ## How to install
 
   ```sh
-  kubectl apply -f https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/tree/2.0.0/portal
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/compositiondefinition.yaml
   ```
 
 </details>

@@ -1,0 +1,16 @@
+apiVersion: templates.krateo.io/v1
+kind: RESTAction
+metadata:
+  name: fireworksapp-template-restaction-cleanup-schema-notordered
+  namespace: fireworksapp-system
+spec:
+  api:
+  - name: deletePanel
+    path: "/apis/widgets.templates.krateo.io/v1beta1/namespaces/fireworksapp-system/panels/fireworksapp-template-panel-schema-notordered"
+    verb: DELETE
+  - name: deletePanelParagraph
+    path: "/apis/widgets.templates.krateo.io/v1beta1/namespaces/fireworksapp-system/paragraphs/fireworksapp-template-panel-paragraph-schema-notordered"
+    verb: DELETE
+  - name: deletePanelButton
+    path: "/apis/widgets.templates.krateo.io/v1beta1/namespaces/fireworksapp-system/buttons/fireworksapp-template-panel-button-schema-notordered"
+    verb: DELETE

@@ -1,8 +1,0 @@
-kind: Paragraph
-apiVersion: widgets.templates.krateo.io/v1beta1
-metadata:
-  name: fireworksapp-template-panel-paragraph
-  namespace: fireworksapp-system
-spec:
-  widgetData:
-    text: This is a card for FireworksApp template (alphabetical order form)
