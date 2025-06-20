@@ -216,7 +216,6 @@ This Template implements the following steps:
   ```sh
   kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/compositiondefinition.yaml
   kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/restaction.fireworksapp-compositiondefinition.yaml
-  kubectl apply -f 
   ```
 
   ## Form not ordered in alphabetical order
