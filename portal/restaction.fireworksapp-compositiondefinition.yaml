@@ -1,0 +1,12 @@
+apiVersion: templates.krateo.io/v1
+kind: RESTAction
+metadata:
+  name: fireworksapp-compositiondefinition
+  namespace: fireworksapp-system
+spec:
+  api:
+  - name: getCompositionDefinition
+    path: "/apis/core.krateo.io/v1alpha1/namespaces/fireworksapp-system/compositiondefinitions/fireworksapp"
+    verb: GET
+    headers:
+    - 'Accept: application/json'

@@ -1,0 +1,12 @@
+apiVersion: templates.krateo.io/v1
+kind: RESTAction
+metadata:
+  name: fireworksapp-schema-notordered
+  namespace: fireworksapp-system
+spec:
+  api:
+  - headers:
+    - 'Accept: application/json'
+    name: getSchemaNotOrdered
+    path: /api/v1/namespaces/fireworksapp-system/configmaps/fireworksapps-v2-0-1-jsonschema-configmap
+    verb: GET
