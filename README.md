@@ -232,12 +232,12 @@ This Template implements the following steps:
   ## Form ordered in alphabetical order
 
   ```sh
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/button.fireworksapp-template-panel-button-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/form.fireworksapp-form-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/panel.fireworksapp-template-panel-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/paragraph.fireworksapp-template-panel-paragraph-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/restaction.fireworksapp-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/restaction.fireworksapp-template-restaction-cleanup-schema-notordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/button.fireworksapp-template-panel-button-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/form.fireworksapp-form-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/panel.fireworksapp-template-panel-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/paragraph.fireworksapp-template-panel-paragraph-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/restaction.fireworksapp-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/restaction.fireworksapp-template-restaction-cleanup-schema-ordered.yaml
   ```
 
 </details>
