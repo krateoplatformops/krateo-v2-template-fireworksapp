@@ -9,12 +9,12 @@ spec:
     type: default
     shape: circle
     clickActionId: cleanup
-  actions:
-    rest:
-      - id: cleanup
-        resourceRefId: cleanup
-        type: rest
-        onSuccessNavigateTo: /templates
+    actions:
+      rest:
+        - id: cleanup
+          resourceRefId: cleanup
+          type: rest
+          onSuccessNavigateTo: /templates
   resourcesRefs:
     - id: cleanup
       apiVersion: templates.krateo.io/v1

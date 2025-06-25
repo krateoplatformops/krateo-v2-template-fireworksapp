@@ -17,20 +17,20 @@ spec:
         - resourceRefId: template-panel-button
       tags:
         - fireworksapp-system
-        - 2.0.1
+        - 2.0.2
     icon:
       name: fa-solid fa-cubes
       color: blue
     items:
       - resourceRefId: template-panel-paragraph
     title: FireworksApp (Not Ordered Schema)
-  actions:
-    openDrawer:
-      - id: template-click-action
-        resourceRefId: template-form
-        type: openDrawer
-        size: large
-        title: Fireworksapp
+    actions:
+      openDrawer:
+        - id: template-click-action
+          resourceRefId: template-form
+          type: openDrawer
+          size: large
+          title: Fireworksapp (Not Ordered)
   widgetDataTemplate:
     - forPath: icon.color
       expression: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }

@@ -110,7 +110,7 @@ This Template implements the following steps:
   ```sh
   helm repo add krateo https://charts.krateo.io
   helm repo update krateo
-  helm install github-provider-kog krateo/github-provider-kog --namespace krateo-system --create-namespace --wait --version 0.0.6
+  helm install github-provider-kog krateo/github-provider-kog --namespace krateo-system --create-namespace --wait --version 0.0.7
   helm install git-provider krateo/git-provider --namespace krateo-system --create-namespace --wait --version 0.10.1
   helm repo add argo https://argoproj.github.io/argo-helm
   helm repo update argo
@@ -214,30 +214,30 @@ This Template implements the following steps:
   ## How to install
 
   ```sh
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/compositiondefinition.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/restaction.fireworksapp-compositiondefinition.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/compositiondefinition.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/restaction.fireworksapp-compositiondefinition.yaml
   ```
 
   ## Form not ordered in alphabetical order
 
   ```sh
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/not-ordered/button.fireworksapp-template-panel-button-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/not-ordered/form.fireworksapp-form-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/not-ordered/panel.fireworksapp-template-panel-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/not-ordered/paragraph.fireworksapp-template-panel-paragraph-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/not-ordered/restaction.fireworksapp-schema-notordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/not-ordered/restaction.fireworksapp-template-restaction-cleanup-schema-notordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/not-ordered/button.fireworksapp-template-panel-button-schema-notordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/not-ordered/form.fireworksapp-form-notordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/not-ordered/panel.fireworksapp-template-panel-schema-notordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/not-ordered/paragraph.fireworksapp-template-panel-paragraph-schema-notordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/not-ordered/restaction.fireworksapp-schema-notordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/not-ordered/restaction.fireworksapp-template-restaction-cleanup-schema-notordered.yaml
   ```
 
   ## Form ordered in alphabetical order
 
   ```sh
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/button.fireworksapp-template-panel-button-schema-ordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/form.fireworksapp-form-ordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/panel.fireworksapp-template-panel-schema-ordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/paragraph.fireworksapp-template-panel-paragraph-schema-ordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/restaction.fireworksapp-schema-ordered.yaml
-  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.1/portal/ordered/restaction.fireworksapp-template-restaction-cleanup-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/ordered/button.fireworksapp-template-panel-button-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/ordered/form.fireworksapp-form-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/ordered/panel.fireworksapp-template-panel-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/ordered/paragraph.fireworksapp-template-panel-paragraph-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/ordered/restaction.fireworksapp-schema-ordered.yaml
+  kubectl apply -f https://raw.githubusercontent.com/krateoplatformops/krateo-v2-template-fireworksapp/refs/tags/2.0.2/portal/ordered/restaction.fireworksapp-template-restaction-cleanup-schema-ordered.yaml
   ```
 
 </details>

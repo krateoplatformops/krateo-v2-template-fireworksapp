@@ -7,25 +7,25 @@ spec:
   widgetData:
     schema: {}
     submitActionId: firework-submit-action-from-string-schema
-  actions:
-    rest:
-      - id: firework-submit-action-from-string-schema
-        onEventNavigateTo:
-          eventReason: "CompositionCreated"
-          url: "/compositions/${metadata.namespace}/${metadata.name}"
-          timeout: 50
-        payloadKey: spec
-        resourceRefId: composition-to-post
-        type: rest
-        payloadToOverride:
-        - name: metadata.name
-          value: ${ git.toRepo.name }
+    actions:
+      rest:
+        - id: firework-submit-action-from-string-schema
+          onEventNavigateTo:
+            eventReason: "CompositionCreated"
+            url: "/compositions/${metadata.namespace}/${metadata.name}"
+            timeout: 50
+          payloadKey: spec
+          resourceRefId: composition-to-post
+          type: rest
+          payloadToOverride:
+          - name: metadata.name
+            value: ${ git.toRepo.name }
   widgetDataTemplate:
     - forPath: stringSchema
       expression: ${ .getSchemaNotOrdered.data["values.schema.json"] }
   resourcesRefs:
     - id: composition-to-post
-      apiVersion: composition.krateo.io/v2-0-1
+      apiVersion: composition.krateo.io/v2-0-2
       namespace: fireworksapp-system
       resource: fireworksapps
       verb: POST
