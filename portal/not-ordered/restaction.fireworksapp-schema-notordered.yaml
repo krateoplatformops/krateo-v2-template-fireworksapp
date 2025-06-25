@@ -8,5 +8,5 @@ spec:
   - headers:
     - 'Accept: application/json'
     name: getSchemaNotOrdered
-    path: /api/v1/namespaces/fireworksapp-system/configmaps/fireworksapps-v2-0-1-jsonschema-configmap
+    path: /api/v1/namespaces/fireworksapp-system/configmaps/fireworksapps-v2-0-2-jsonschema-configmap
     verb: GET
