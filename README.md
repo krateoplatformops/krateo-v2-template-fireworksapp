@@ -2,6 +2,9 @@
 
 This is a template used to scaffold a toolchain to host and deploy a fully functional frontend App (FireworksApp).
 
+> [!NOTE]
+> This template is deprecated from Krateo v2.5.1 - it has been migrated to https://github.com/krateoplatformops-blueprints/github-scaffolding-with-composition-page
+
 This Template implements the following steps:
 1. Create an empty Github repository (on github.com) - [link](https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/blob/main/chart/templates/git-repo.yaml)
 2. Push the code from the [skeleton](https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/tree/main/skeleton) to the previously create repository - [link](https://github.com/krateoplatformops/krateo-v2-template-fireworksapp/blob/main/chart/templates/git-clone.yaml)
