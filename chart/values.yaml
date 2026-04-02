@@ -71,7 +71,7 @@ git:
     # @param {string} [scmUrl] (schema+host e.g. https://github.com) for the target Git repository
     scmUrl: https://github.com
     # @param {string} [org] Organization/group/subgroup for the target Git repository
-    org: krateoplatformops-archive
+    org: krateoplatformops
     # @param {string} name Name for the target Git repository
     name: fireworksapp-test-v2
     # @param {string} [branch] Branch for the target Git repository
